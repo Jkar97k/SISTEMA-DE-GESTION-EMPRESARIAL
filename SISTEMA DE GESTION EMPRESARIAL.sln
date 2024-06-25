@@ -15,9 +15,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.MODELS", "4.MODELS", "{10
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "COMMON", "COMMON", "{9F0DC5B8-98FD-4BF7-92F1-C9FE95B1910D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.Entities", "Admin.Entities\Admin.Entities.csproj", "{93B3D3D0-A4DA-46F6-BFF4-0D4E32853DCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.Entities", "Admin.Entities\Admin.Entities.csproj", "{93B3D3D0-A4DA-46F6-BFF4-0D4E32853DCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.Repositories", "Admin.Repositories\Admin.Repositories.csproj", "{628F54E5-E902-4AEA-81ED-7F594CC3CA6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.Repositories", "Admin.Repositories\Admin.Repositories.csproj", "{628F54E5-E902-4AEA-81ED-7F594CC3CA6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{545F6558-73BE-4874-BE3A-CC5F4A25810F}"
+	ProjectSection(SolutionItems) = preProject
+		..\yml\docker-compose.yml = ..\yml\docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
