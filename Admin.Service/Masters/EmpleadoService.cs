@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Admin.Services.Masters
 {
-    public class EmpleadoService : IEmpleadoService
+    public class EmpleadoService 
     {
     }
 }

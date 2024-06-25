@@ -11,4 +11,8 @@
     <ProjectReference Include="..\Admin.Interfaces\Admin.Interfaces.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Order\" />
+  </ItemGroup>
+
 </Project>

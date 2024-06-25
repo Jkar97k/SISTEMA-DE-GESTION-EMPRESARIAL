@@ -1,5 +1,5 @@
 ﻿
-namespace Admin.Repositories.Base
+namespace Admin.Interfaces.Base
 {
     public interface IRepository<T> where T : class
     {

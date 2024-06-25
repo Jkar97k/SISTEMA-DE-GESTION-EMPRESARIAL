@@ -1,6 +1,5 @@
 ﻿using Admin.Entities.Modelos;
 using Admin.Interfaces.Base;
-using Admin.Interfaces.Repositories.Base;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Admin.Interfaces.Repositories.Repositories
 {
-    public interface IEmpleadosRepository : IRepository<Empleado>
+    public interface IArlRepository : IRepository<Arl>
     {
     }
 }
