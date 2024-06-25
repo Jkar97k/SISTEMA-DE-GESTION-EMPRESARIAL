@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Admin.DTO\Admin.DTO.csproj" />
-    <ProjectReference Include="..\Admin.Entities\Admin.Entities.csproj" />
+    <ProjectReference Include="..\Admin.Interfaces\Admin.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

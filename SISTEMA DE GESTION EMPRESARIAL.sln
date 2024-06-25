@@ -28,7 +28,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.DTO", "Admin.DTO\Admi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.Interfaces", "Admin.Interfaces\Admin.Interfaces.csproj", "{60CCEA83-910A-407D-987E-EA9D097C7548}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.Service", "Admin.Service\Admin.Service.csproj", "{8A560D8F-E8BF-4048-A87C-B3BD7CCAF13B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.Services", "Admin.Service\Admin.Services.csproj", "{8A560D8F-E8BF-4048-A87C-B3BD7CCAF13B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.api", "Admin.api\Admin.api.csproj", "{BE7A4370-C220-45E8-8F73-3FD1FECC9029}"
 EndProject

@@ -3,12 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Base\" />
-    <Folder Include="Repositories\" />
+    <ProjectReference Include="..\Admin.Entities\Admin.Entities.csproj" />
+    <ProjectReference Include="..\Admin.Interfaces\Admin.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>
