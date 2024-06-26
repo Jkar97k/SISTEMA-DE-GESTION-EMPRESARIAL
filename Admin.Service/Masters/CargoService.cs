@@ -24,18 +24,58 @@ namespace Admin.Services.Masters
 
         public async Task Create(CreateCargoDTO dto)
         {
-            var transaccion = _unitOfWork.BeginTransaction();
-            try
+            var data = await _unitOfWork.CargoRepository.GetOne(x => x.Nombre == dto.Nombre);
+
+            if (data != null)
             {
-                var entity = _mapper.Map<Cargo>(dto);
-                _unitOfWork.CargoRepository.AddAsync(entity);
-                transaccion.Commit();
-                _unitOfWork.Commit();
+                return;
             }
-            catch
+            var entity = _mapper.Map<Cargo>(dto);
+           await _unitOfWork.CargoRepository.AddAsync(entity);
+            _unitOfWork.Commit();
+        }
+
+        public async Task<List<CargoDTO>> GetAllAsync()
+        {
+            var data = await _unitOfWork.CargoRepository.GetAllAsync();
+            return _mapper.Map<List<CargoDTO>>(data);
+        }
+
+        public async Task Update(CargoDTO dto)
+        {
+            var dataG = await _unitOfWork.CargoRepository.GetOne(x => x.Id == dto.Id);
+
+
+            if (dataG == null)
             {
-                transaccion.Rollback();
+                return;
             }
+            var dataN = await _unitOfWork.CargoRepository.GetOne(x => x.Nombre == dto.Nombre);
+
+            if (dataN != null)
+            {
+                return;
+            }
+
+            var user = _mapper.Map(dto, dataG);
+            await _unitOfWork.CargoRepository.UpdateAsync(user);
+
+            _unitOfWork.Commit();
+            return;
+        }
+
+        public async Task Delete(CargoDTO dto) 
+        {
+            var dataG = await _unitOfWork.CargoRepository.GetOne(x => x.Id == dto.Id);
+
+            if (dataG != null)
+            {
+                return;
+            }
+            
+            var entity = _mapper.Map<Cargo>(dto);
+            await _unitOfWork.CargoRepository.DeleteAsync(entity);
+            _unitOfWork.Commit();
         }
 
     }

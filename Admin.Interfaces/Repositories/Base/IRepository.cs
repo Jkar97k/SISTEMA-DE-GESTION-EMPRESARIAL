@@ -3,10 +3,12 @@ namespace Admin.Interfaces.Base
 {
     public interface IRepository<T> where T : class
     {
-        void AddAsync(T entity);
-        void DeleteAsync(T entity);
-        IEnumerable<T> GetAllAsync();
-        void SaveChanges();
-        void UpdateAsync(T entity);
+        Task AddAsync(T entity);
+        Task DeleteAsync(T entity);
+        Task<List<T>> GetAllAsync();
+        Task<T> GetOne(System.Linq.Expressions.Expression<Func<T, bool>> funcion);
+        Task SaveChanges();
+        Task UpdateAsync(T entity);
+
     }
 }
