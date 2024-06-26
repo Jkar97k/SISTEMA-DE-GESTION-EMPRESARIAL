@@ -7,8 +7,7 @@ namespace Admin.Interfaces.Base
         Task DeleteAsync(T entity);
         Task<List<T>> GetAllAsync();
         Task<T> GetOne(System.Linq.Expressions.Expression<Func<T, bool>> funcion);
-        Task SaveChanges();
+        Task<int> SaveChanges();
         Task UpdateAsync(T entity);
-
     }
 }

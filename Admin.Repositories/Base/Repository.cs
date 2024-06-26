@@ -24,12 +24,14 @@ namespace Admin.Repositories.Base
         public async Task AddAsync(T entity)
         {
             _dbSet.Add(entity);
+            await SaveChanges();
         }
 
         public async Task UpdateAsync(T entity)
         {
-            _dbSet.Attach(entity);
+            _context.Set<T>().Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
+            await SaveChanges();
         }
 
         public async Task DeleteAsync(T entity)
@@ -39,16 +41,17 @@ namespace Admin.Repositories.Base
                 _dbSet.Attach(entity);
             }
             _dbSet.Remove(entity);
+            await SaveChanges();
         }
 
-        public async Task SaveChanges()
+        public async Task<int> SaveChanges()
         {
-            _context.SaveChanges();
+           return await _context.SaveChangesAsync();
         }
 
         public async Task<List<T>> GetAllAsync()
         {
-            return _dbSet.ToList();
+            return await _context.Set<T>().ToListAsync();
         }
         public async Task<T?> GetOne(Expression<Func<T, bool>> funcion)
         {

@@ -1,8 +1,31 @@
+using Admin.Entities.Modelos;
+using Admin.Interfaces.Base;
+using Admin.Interfaces.Repositories.Repositories;
+using Admin.Repositories.Base;
+using Admin.Repositories.Repositories;
+using Admin.Services.Masters;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddDbContext<SgeAdminContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+//Services
+builder.Services.AddScoped<ICargoService,CargoService>();
+
+//Repositories
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<ICargoRepository,CargoRepository>();
+builder.Services.AddScoped<IUnitofWork, UnitofWork>();
+
+// Add services to the container.
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
