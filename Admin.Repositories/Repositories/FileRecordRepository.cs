@@ -1,4 +1,5 @@
 ﻿using Admin.Entities.Modelos;
+using Admin.Interfaces.Repositories.Repositories;
 using Admin.Repositories.Base;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Admin.Repositories.Repositories
 {
-    public class FileRecordRepository : Repository<FileRecord>
+    public class FileRecordRepository : Repository<FileRecord>, IFileRecordRepository
     {
         public FileRecordRepository(SgeAdminContext context) : base(context)
         {

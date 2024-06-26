@@ -1,4 +1,5 @@
 ﻿using Admin.Entities.Modelos;
+using Admin.Interfaces.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

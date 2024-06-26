@@ -9,6 +9,6 @@ namespace Admin.Interfaces.Services.Masters
 {
     public interface IEmpleadoService
     {
-        //Task Create(CreateEmpleadoDTO dto);
+        Task Create(CreateEmpleadoDTO dto);
     }
 }

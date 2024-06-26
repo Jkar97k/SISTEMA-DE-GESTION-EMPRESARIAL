@@ -1,4 +1,5 @@
 ﻿using Admin.Entities.Modelos;
+using Admin.Interfaces.Repositories.Repositories;
 using Admin.Repositories.Base;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Admin.Repositories.Repositories
 {
-    public class TiposContratoRepository : Repository<TiposContrato>
+    public class TiposContratoRepository : Repository<TiposContrato>,ITipoContratoRepository
     {
         public TiposContratoRepository(SgeAdminContext context) : base(context)
         {

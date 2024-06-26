@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Admin.Interfaces.Repositories.Repositories;
+using Microsoft.EntityFrameworkCore.Storage;
 
-namespace Admin.Interfaces.Repositories.Base
+namespace Admin.Repositories.Base
 {
-    public interface IUnitOfWork
+    public interface IUnitofWork
     {
+        ICargoRepository CargoRepository { get; }
+
+        IDbContextTransaction BeginTransaction();
+        void Commit();
+        void Dispose();
     }
 }
