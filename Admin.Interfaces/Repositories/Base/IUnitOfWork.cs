@@ -8,7 +8,7 @@ namespace Admin.Repositories.Base
         ICargoRepository CargoRepository { get; }
 
         IDbContextTransaction BeginTransaction();
-        void Commit();
+        Task SaveChanges();
         void Dispose();
     }
 }

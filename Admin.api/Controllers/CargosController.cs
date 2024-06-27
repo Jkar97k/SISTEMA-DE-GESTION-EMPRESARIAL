@@ -20,7 +20,7 @@ namespace Admin.api.Controllers
         [HttpGet("Get")]
         public async Task<IActionResult> Get()
         {
-            return Ok(new { Result = _cargoService.GetAllAsync()});
+            return Ok(new { Result = await _cargoService.GetAllAsync()});
         }
 
 

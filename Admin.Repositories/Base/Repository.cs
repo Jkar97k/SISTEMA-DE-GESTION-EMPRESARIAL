@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Admin.Repositories.Base
 {
+#nullable enable
     public class Repository<T> : IRepository<T> where T : class
     {
         private readonly SgeAdminContext _context;
@@ -23,25 +24,22 @@ namespace Admin.Repositories.Base
 
         public async Task AddAsync(T entity)
         {
-            _dbSet.Add(entity);
-            await SaveChanges();
+           await _dbSet.AddAsync(entity);
         }
 
-        public async Task UpdateAsync(T entity)
+        public void UpdateAsync(T entity)
         {
-            _context.Set<T>().Attach(entity);
+            _dbSet.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
-            await SaveChanges();
         }
 
-        public async Task DeleteAsync(T entity)
+        public void DeleteAsync(T entity)
         {
             if (_context.Entry(entity).State == EntityState.Detached)
             {
                 _dbSet.Attach(entity);
             }
             _dbSet.Remove(entity);
-            await SaveChanges();
         }
 
         public async Task<int> SaveChanges()

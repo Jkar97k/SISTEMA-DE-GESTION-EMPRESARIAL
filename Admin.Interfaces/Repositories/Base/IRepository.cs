@@ -1,13 +1,15 @@
 ﻿
+using System.Linq.Expressions;
+
 namespace Admin.Interfaces.Base
 {
     public interface IRepository<T> where T : class
     {
         Task AddAsync(T entity);
-        Task DeleteAsync(T entity);
+        void DeleteAsync(T entity);
         Task<List<T>> GetAllAsync();
-        Task<T> GetOne(System.Linq.Expressions.Expression<Func<T, bool>> funcion);
+        Task<T?> GetOne(Expression<Func<T, bool>> funcion);
         Task<int> SaveChanges();
-        Task UpdateAsync(T entity);
+        void UpdateAsync(T entity);
     }
 }

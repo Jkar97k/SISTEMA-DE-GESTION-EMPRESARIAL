@@ -32,7 +32,7 @@ namespace Admin.Services.Masters
             }
             var entity = _mapper.Map<Cargo>(dto);
            await _unitOfWork.CargoRepository.AddAsync(entity);
-            _unitOfWork.Commit();
+           await _unitOfWork.SaveChanges();
         }
 
         public async Task<List<CargoDTO>> GetAllAsync()
@@ -58,9 +58,10 @@ namespace Admin.Services.Masters
             }
 
             var user = _mapper.Map(dto, dataG);
-            await _unitOfWork.CargoRepository.UpdateAsync(user);
 
-            _unitOfWork.Commit();
+            _unitOfWork.CargoRepository.UpdateAsync(user);
+
+            await _unitOfWork.SaveChanges();
             return;
         }
 
@@ -74,8 +75,10 @@ namespace Admin.Services.Masters
             }
             
             var entity = _mapper.Map<Cargo>(dto);
-            await _unitOfWork.CargoRepository.DeleteAsync(entity);
-            _unitOfWork.Commit();
+
+            _unitOfWork.CargoRepository.DeleteAsync(entity);
+
+            await _unitOfWork.SaveChanges();
         }
 
     }

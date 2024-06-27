@@ -4,6 +4,7 @@ using Admin.Interfaces.Repositories.Repositories;
 using Admin.Repositories.Base;
 using Admin.Repositories.Repositories;
 using Admin.Services.Masters;
+using IoC.Api.Admin;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,12 +17,11 @@ builder.Services.AddDbContext<SgeAdminContext>(options =>
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 //Services
-builder.Services.AddScoped<ICargoService,CargoService>();
+ServiceConfig.Configure(builder.Services);
 
 //Repositories
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddScoped<ICargoRepository,CargoRepository>();
-builder.Services.AddScoped<IUnitofWork, UnitofWork>();
+RepositoryConfig.Configure(builder.Services);
+
 
 // Add services to the container.
 builder.Services.AddControllers();

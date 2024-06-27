@@ -22,9 +22,9 @@ namespace Admin.Repositories.Base
 
         public ICargoRepository CargoRepository => _cargoRepository ??= new CargoRepository(_context);
 
-        public void Commit()
+        public async Task SaveChanges()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public IDbContextTransaction BeginTransaction()
