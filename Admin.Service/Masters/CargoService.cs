@@ -77,7 +77,7 @@ namespace Admin.Services.Masters
         {
             var dataG = await _unitOfWork.CargoRepository.GetOne(x => x.Id == dto.Id);
 
-            if (dataG != null)
+            if (dataG == null)
             {
                 return;
             }
