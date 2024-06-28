@@ -18,7 +18,7 @@ builder.Services.AddDbContext<SgeAdminContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 //Services
 ServiceConfig.Configure(builder.Services);
