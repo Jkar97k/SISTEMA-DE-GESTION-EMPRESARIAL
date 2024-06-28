@@ -11,10 +11,12 @@ namespace Admin.api.Controllers
     public class CargosController : ControllerBase
     {
         private readonly ICargoService _cargoService;
+        private readonly ILogger<CargosController> _logger;
 
-        public CargosController(ICargoService cargoService)
+        public CargosController(ICargoService cargoService, ILogger<CargosController> logger)
         {
             _cargoService = cargoService;
+            _logger = logger;
         }
 
         [HttpGet("Get")]
@@ -29,7 +31,9 @@ namespace Admin.api.Controllers
         public async Task<IActionResult> CreateUser(CreateCargoDTO dto)
         {
             await _cargoService.Create(dto);
-            return Ok(new { Message = "ok" });
+
+            //_logger.LogInformation();
+            return Ok();
         }
 
 

@@ -22,9 +22,9 @@ namespace Admin.Repositories.Base
             _dbSet = context.Set<T>();
         }
 
-        public async Task AddAsync(T entity)
+        public void Add(T entity)
         {
-           await _dbSet.AddAsync(entity);
+            _dbSet.AddAsync(entity);
         }
 
         public void UpdateAsync(T entity)
@@ -49,11 +49,11 @@ namespace Admin.Repositories.Base
 
         public async Task<List<T>> GetAllAsync()
         {
-            return await _context.Set<T>().ToListAsync();
+            return await _dbSet.ToListAsync();
         }
         public async Task<T?> GetOne(Expression<Func<T, bool>> funcion)
         {
-            return await _context.Set<T>().AsNoTracking().Where(funcion).FirstOrDefaultAsync();
+            return await _dbSet.AsNoTracking().Where(funcion).FirstOrDefaultAsync();
         }
     }
 }

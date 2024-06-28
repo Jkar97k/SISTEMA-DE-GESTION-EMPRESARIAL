@@ -44,7 +44,7 @@ namespace Configurations.serilog
             builder.Host.UseSerilog(Log.Logger);
         }
 
-        public static void ConfigLogSeqAndMysql(WebApplicationBuilder builder)
+        public static void ConfigLogSeqAndsqlServer(WebApplicationBuilder builder)
         {
             IConfiguration configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)

@@ -1,20 +1,24 @@
+using Admin.api.Configuration;
 using Admin.Entities.Modelos;
 using Admin.Interfaces.Base;
 using Admin.Interfaces.Repositories.Repositories;
 using Admin.Repositories.Base;
 using Admin.Repositories.Repositories;
 using Admin.Services.Masters;
+using Configurations.serilog;
 using IoC.Api.Admin;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+SerilogConfig.ConfigLogSeqAndsqlServer(builder);
 
 builder.Services.AddDbContext<SgeAdminContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 //Services
 ServiceConfig.Configure(builder.Services);
