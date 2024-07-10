@@ -1,5 +1,6 @@
 ﻿using Admin.Entities.Modelos;
 using Admin.Interfaces.Base;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,13 @@ namespace Admin.Repositories.Base
     {
         private readonly SgeAdminContext _context;
         private readonly DbSet<T> _dbSet;
+        protected readonly IMapper _mapper;
 
-        public Repository(SgeAdminContext context)
+        public Repository(SgeAdminContext context, IMapper mapper)
         {
             _context = context;
             _dbSet = context.Set<T>();
+            _mapper = mapper;
         }
 
         public void Add(T entity)

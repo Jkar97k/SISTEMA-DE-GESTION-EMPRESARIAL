@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Admin.DTO.Masters
+namespace Admin.DTO.Masters.Ceco
 {
-    public class CargoDTO
+    public class CecoDTO
     {
         public int Id { get; set; }
 
-        public string Nombre { get; set; }
+        public string Nombre { get; set; } 
     }
 }

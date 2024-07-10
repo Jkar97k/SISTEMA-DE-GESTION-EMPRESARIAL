@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Admin.Repositories.Repositories
+namespace Admin.Repositories.Repositories.Maestros
 {
-    public class CecoRepository : Repository<Ceco>,ICecoRepository
+    public class TiposContratoRepository : Repository<TiposContrato>, ITipoContratoRepository
     {
-        public CecoRepository(SgeAdminContext context) : base(context)
+        public TiposContratoRepository(SgeAdminContext context) : base(context)
         {
         }
     }

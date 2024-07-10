@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Admin.DTO.Masters.Empleado
+{
+    public class EmpleadosDTO
+    {
+        public int Id { get; set; }
+
+        public int TipoDocumento { get; set; }
+
+        public string NumeroDocumento { get; set; }
+
+        public string Nombres { get; set; }
+
+        public string Apellidos { get; set; }
+
+        public string CorreoPersonal { get; set; }
+
+        public string CorreoEmpresarial { get; set; }
+
+        public string Direccion { get; set; }
+
+        public long Telefono { get; set; }
+
+        public long ContactoEmergencia { get; set; }
+
+        public long TelefonoContactoEmergencia { get; set; }
+
+        public string Guid { get; set; }
+
+        public DateTime Created { get; set; }
+
+        public string ModifiedBy { get; set; }
+
+        public DateTime ModifiedDate { get; set; }
+
+        public bool Status { get; set; }
+    }
+}

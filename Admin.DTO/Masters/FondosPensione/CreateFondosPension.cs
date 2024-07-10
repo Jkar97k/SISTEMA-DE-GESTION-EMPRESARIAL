@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Admin.DTO.Maestros
+namespace Admin.DTO.Masters.FondosPensione
 {
-    public class CreateEmpleadoDTO
+    public class CreateFondosPension
     {
+        public string Nombre { get; set; }
     }
 }

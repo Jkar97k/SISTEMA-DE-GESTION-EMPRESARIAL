@@ -2,7 +2,6 @@
 using Admin.Interfaces.Base;
 using Admin.Interfaces.Repositories.Repositories;
 using Admin.Repositories.Base;
-using Admin.Repositories.Repositories;
 using FluentValidation.AspNetCore;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Admin.Services.Masters;
+using Admin.Repositories.Repositories.Maestros;
 
 namespace IoC.Api.Admin
 {

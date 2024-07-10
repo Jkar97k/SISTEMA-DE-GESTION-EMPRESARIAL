@@ -1,4 +1,4 @@
-﻿using Admin.DTO.Masters;
+﻿using Admin.DTO.Masters.Cargo;
 using Admin.Interfaces.Repositories.Repositories;
 using Admin.Services.Masters;
 using Microsoft.AspNetCore.Authorization;

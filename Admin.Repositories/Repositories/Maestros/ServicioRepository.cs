@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Admin.Repositories.Repositories
+namespace Admin.Repositories.Repositories.Maestros
 {
-    public class EpRepository : Repository<Ep>,IEpRepository
+    public class ServicioRepository : Repository<Servicio>, IServicioRepository
     {
-        public EpRepository(SgeAdminContext context) : base(context)
+        public ServicioRepository(SgeAdminContext context) : base(context)
         {
         }
     }

@@ -1,4 +1,4 @@
-﻿using Admin.DTO.Maestros;
+﻿using Admin.DTO.Masters.Empleado;
 using System;
 using System.Collections.Generic;
 using System.Linq;

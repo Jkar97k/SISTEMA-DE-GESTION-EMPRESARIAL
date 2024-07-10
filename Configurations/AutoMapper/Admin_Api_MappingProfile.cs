@@ -1,4 +1,4 @@
-﻿using Admin.DTO.Masters;
+﻿using Admin.DTO.Masters.Cargo;
 using Admin.Entities.Modelos;
 using AutoMapper;
 using System;

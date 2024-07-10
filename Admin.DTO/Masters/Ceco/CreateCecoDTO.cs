@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Admin.Repositories.Repositories
+namespace Admin.DTO.Masters.Ceco
 {
-    public class ContratosLaboraleRepository
+    public class CreateCecoDTO
     {
+        public string Nombre { get; set; }
     }
 }

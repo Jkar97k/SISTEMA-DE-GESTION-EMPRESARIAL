@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Admin.Repositories.Repositories
+namespace Admin.Repositories.Repositories.Maestros
 {
-    public class FondosPensionRepository : Repository<FondosPensione>,IFondosPensionRepository
+    public class ArlRepository : Repository<Arl>, IArlRepository
     {
-        public FondosPensionRepository(SgeAdminContext context) : base(context)
+        public ArlRepository(SgeAdminContext context) : base(context)
         {
         }
     }
