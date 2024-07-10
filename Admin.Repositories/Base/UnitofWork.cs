@@ -14,6 +14,14 @@ namespace Admin.Repositories.Base
     {
         private readonly SgeAdminContext _context;
         private ICargoRepository _cargoRepository;
+        private IArlRepository _arlRepository;
+        private ICecoRepository _ccoRepository;
+        private IEmpleadosRepository _empleadosRepository;
+        private IEpRepository _epRepository;
+        private IFileRecordRepository _fileRecordRepository;
+        private IFondosPensionRepository _fondosPensionRepository;
+        private IServicioRepository _servicioRepository;
+        private ITipoContratoRepository _tipoContratoRepository;
 
         public UnitofWork(SgeAdminContext context)
         {
@@ -21,6 +29,14 @@ namespace Admin.Repositories.Base
         }
 
         public ICargoRepository CargoRepository => _cargoRepository ??= new CargoRepository(_context);
+        public IArlRepository ArlRepository => _arlRepository ??= new ArlRepository(_context);
+        public ICecoRepository CecoRepository => _ccoRepository ??= new CecoRepository(_context);
+        public IEmpleadosRepository EmpleadosRepository => _empleadosRepository ??= new EmpleadoRepository(_context);
+        public IEpRepository EpRepository => _epRepository ??= new EpRepository(_context);
+        public IFileRecordRepository FileRecordRepository => _fileRecordRepository ??= new FileRecordRepository(_context);
+        public IFondosPensionRepository FondosPensionRepository => _fondosPensionRepository ??= new FondosPensionRepository(_context);
+        public IServicioRepository ServicioRepository => _servicioRepository ??= new ServicioRepository(_context);
+        public ITipoContratoRepository TipoContratoRepository => _tipoContratoRepository ??= new TiposContratoRepository(_context);
 
         public async Task SaveChanges()
         {

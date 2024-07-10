@@ -7,18 +7,24 @@ using Admin.Repositories.Repositories;
 using Admin.Services.Masters;
 using Configurations.serilog;
 using IoC.Api.Admin;
+using IoC.Global;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-SerilogConfig.ConfigLogSeqAndsqlServer(builder);
+SerilogIoc.ConfigLogSeqAndsqlServer(builder);
 
-builder.Services.AddDbContext<SgeAdminContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+Admin_DataBaseIoC.ConfigureSQLService(builder);
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+Admin_AutoMapperIoC.ConfigureService(builder);
+
+Admin_BusinessLogicIoC.RepositoryService(builder);
+
+Admin_BusinessLogicIoC.ReglasNegocioService(builder);
+
+Admin_BusinessLogicIoC.ValidacionesService(builder);    
+
+Admin_BusinessLogicIoC.UtilidadesService(builder);
 
 //Services
 ServiceConfig.Configure(builder.Services);
@@ -28,7 +34,10 @@ RepositoryConfig.Configure(builder.Services);
 
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers(config =>
+{
+    config.Filters.Add<GlobalLoggingFilterController>();
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

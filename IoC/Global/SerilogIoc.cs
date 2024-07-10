@@ -1,16 +1,16 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
-using Serilog.Sinks.MSSqlServer;
 using Serilog;
+using Serilog.Sinks.MSSqlServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Configurations.serilog
+namespace IoC.Global
 {
-    public class SerilogConfig
+    public class SerilogIoc
     {
         [Obsolete]
         public static void SQLServerLogs(WebApplicationBuilder builder)
@@ -57,5 +57,4 @@ namespace Configurations.serilog
             builder.Host.UseSerilog(Log.Logger);
         }
     }
-
 }
