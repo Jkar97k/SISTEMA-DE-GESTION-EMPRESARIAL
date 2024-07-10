@@ -1,7 +1,6 @@
-﻿using Admin.DTO.Masters.Cargo;
+﻿using Admin.DTO;
 using Admin.Entities.Modelos;
-using Admin.Interfaces.Repositories.Repositories;
-using Admin.Repositories.Base;
+using Admin.Interfaces;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using System;

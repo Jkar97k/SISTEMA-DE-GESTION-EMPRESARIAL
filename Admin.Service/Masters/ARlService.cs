@@ -1,17 +1,20 @@
 ﻿using AutoMapper;
 using Admin.Entities.Modelos;
 
+using Admin.DTO;
+using Admin.Interfaces;
+
 namespace Admin.Services.Master;
 
 public class ArlService : IArlService
 {
     private readonly IMapper _mapper;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IUnitofWork _unitOfWork;
 
-    public ArlService(IMapper mapper, IUnitOfWork unitOfWork)
+    public ArlService(IMapper mapper, IUnitofWork unitofWork)
     {
         _mapper = mapper;
-        _unitOfWork = unitOfWork;
+        _unitOfWork = unitofWork;
     }
 
     public async Task<List<ArlDTO>> GetAll()
@@ -19,7 +22,7 @@ public class ArlService : IArlService
         var data = await _unitOfWork.ArlRepository.GetAllAsync();
         return _mapper.Map<List<ArlDTO>>(data);
     }
-    public async Task Add(ArlCreateDTO dto)
+    public async Task Add(CreateArlDTO dto)
     {
         var data = await _unitOfWork.ArlRepository.GetOne(x => x.Nombre == dto.Nombre);
         if (data != null)
@@ -27,8 +30,8 @@ public class ArlService : IArlService
             return;
         }
         var entity = _mapper.Map<Arl>(dto);
-        _unitOfWork.ArlRepository.AddAsync(entity);
-        await _unitOfWork.Commit();
+        _unitOfWork.ArlRepository.Add(entity);
+        await _unitOfWork.SaveChanges();
     }
     public async Task Update(ArlDTO dto)
     {
@@ -39,7 +42,7 @@ public class ArlService : IArlService
         }
         var entity = _mapper.Map(dto, data);
         _unitOfWork.ArlRepository.UpdateAsync(entity);
-        await _unitOfWork.Commit();
+        await _unitOfWork.SaveChanges();
     }
     public async Task Delete(ArlDTO dto)
     {
@@ -50,6 +53,6 @@ public class ArlService : IArlService
         }
         var entity = _mapper.Map<Arl>(dto);
         _unitOfWork.ArlRepository.DeleteAsync(entity);
-        await _unitOfWork.Commit();
+        await _unitOfWork.SaveChanges();
     }
 }

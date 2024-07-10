@@ -1,7 +1,8 @@
-﻿using Admin.Interfaces.Repositories.Repositories;
+﻿
+using Admin.Interfaces;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace Admin.Repositories.Base
+namespace Admin.Interfaces
 {
     public interface IUnitofWork
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Admin.DTO.Masters.Cargo
+namespace Admin.DTO
 {
     public class CreateCargoDTO
     {

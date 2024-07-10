@@ -1,6 +1,7 @@
-﻿using Admin.DTO.Masters.Cargo;
+﻿using Admin.DTO;
 
-namespace Admin.Services.Masters
+
+namespace Admin.Interfaces
 {
     public interface ICargoService
     {
