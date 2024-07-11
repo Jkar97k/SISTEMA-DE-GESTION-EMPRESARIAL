@@ -4,55 +4,57 @@ using Admin.Entities.Modelos;
 using Admin.DTO;
 using Admin.Interfaces;
 
-namespace Admin.Services.Master;
-
-public class ArlService : IArlService
+namespace Admin.Services
 {
-    private readonly IMapper _mapper;
-    private readonly IUnitofWork _unitOfWork;
 
-    public ArlService(IMapper mapper, IUnitofWork unitofWork)
+    public class ArlService : IArlService
     {
-        _mapper = mapper;
-        _unitOfWork = unitofWork;
-    }
+        private readonly IMapper _mapper;
+        private readonly IUnitofWork _unitOfWork;
 
-    public async Task<List<ArlDTO>> GetAll()
-    {
-        var data = await _unitOfWork.ArlRepository.GetAllAsync();
-        return _mapper.Map<List<ArlDTO>>(data);
-    }
-    public async Task Add(CreateArlDTO dto)
-    {
-        var data = await _unitOfWork.ArlRepository.GetOne(x => x.Nombre == dto.Nombre);
-        if (data != null)
+        public ArlService(IMapper mapper, IUnitofWork unitofWork)
         {
-            return;
+            _mapper = mapper;
+            _unitOfWork = unitofWork;
         }
-        var entity = _mapper.Map<Arl>(dto);
-        _unitOfWork.ArlRepository.Add(entity);
-        await _unitOfWork.SaveChanges();
-    }
-    public async Task Update(ArlDTO dto)
-    {
-        var data = await _unitOfWork.ArlRepository.GetOne(x => x.Id == dto.Id);
-        if (data == null)
+
+        public async Task<List<ArlDTO>> GetAll()
         {
-            return;
+            var data = await _unitOfWork.ArlRepository.GetAllAsync();
+            return _mapper.Map<List<ArlDTO>>(data);
         }
-        var entity = _mapper.Map(dto, data);
-        _unitOfWork.ArlRepository.UpdateAsync(entity);
-        await _unitOfWork.SaveChanges();
-    }
-    public async Task Delete(ArlDTO dto)
-    {
-        var data = await _unitOfWork.ArlRepository.GetOne(x => x.Id == dto.Id);
-        if (data == null)
+        public async Task Add(CreateArlDTO dto)
         {
-            return;
+            var data = await _unitOfWork.ArlRepository.GetOne(x => x.Nombre == dto.Nombre);
+            if (data != null)
+            {
+                return;
+            }
+            var entity = _mapper.Map<Arl>(dto);
+            _unitOfWork.ArlRepository.Add(entity);
+            await _unitOfWork.SaveChanges();
         }
-        var entity = _mapper.Map<Arl>(dto);
-        _unitOfWork.ArlRepository.DeleteAsync(entity);
-        await _unitOfWork.SaveChanges();
+        public async Task Update(ArlDTO dto)
+        {
+            var data = await _unitOfWork.ArlRepository.GetOne(x => x.Id == dto.Id);
+            if (data == null)
+            {
+                return;
+            }
+            var entity = _mapper.Map(dto, data);
+            _unitOfWork.ArlRepository.UpdateAsync(entity);
+            await _unitOfWork.SaveChanges();
+        }
+        public async Task Delete(ArlDTO dto)
+        {
+            var data = await _unitOfWork.ArlRepository.GetOne(x => x.Id == dto.Id);
+            if (data == null)
+            {
+                return;
+            }
+            var entity = _mapper.Map<Arl>(dto);
+            _unitOfWork.ArlRepository.DeleteAsync(entity);
+            await _unitOfWork.SaveChanges();
+        }
     }
 }

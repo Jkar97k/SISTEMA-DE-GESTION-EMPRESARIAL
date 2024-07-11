@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Archivos\" />
     <Folder Include="Order\" />
   </ItemGroup>
 

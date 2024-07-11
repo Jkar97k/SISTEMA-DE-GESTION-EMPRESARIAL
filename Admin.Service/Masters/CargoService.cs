@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Admin.Services.Masters
+namespace Admin.Services
 {
     public class CargoService : ICargoService
     {
