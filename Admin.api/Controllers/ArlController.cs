@@ -1,37 +1,36 @@
-﻿
-using Admin.DTO;
+﻿using Admin.DTO;
 using Admin.Interfaces;
-using Admin.Services.Masters;
-using Microsoft.AspNetCore.Authorization;
+using Admin.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Admin.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CargosController : ControllerBase
+    public class ArlController : ControllerBase
     {
-        private readonly ICargoService _cargoService;
-        private readonly ILogger<CargosController> _logger;
+        private readonly IArlService _arlService;
+        private readonly ILogger<ArlController> _logger;
 
-        public CargosController(ICargoService cargoService, ILogger<CargosController> logger)
+        public ArlController(IArlService arlService, ILogger<ArlController> logger)
         {
-            _cargoService = cargoService;
+            _arlService = arlService;
             _logger = logger;
         }
 
         [HttpGet("Get")]
         public async Task<IActionResult> Get()
         {
-            return Ok(new { Result = await _cargoService.GetAllAsync()});
+            return Ok(new { Result = await _arlService.GetAll()});
         }
 
 
-       // [AllowAnonymous]
+        // [AllowAnonymous]
         [HttpPost("CreateCargo")]
-        public async Task<IActionResult> CreateUser(CreateCargoDTO dto)
+        public async Task<IActionResult> CreateUser(CreateArlDTO dto)
         {
-            await _cargoService.Create(dto);
+            await _arlService.Add(dto);
 
             //_logger.LogInformation();
             return Ok();
@@ -39,9 +38,9 @@ namespace Admin.api.Controllers
 
 
         [HttpPut("Put")]
-        public async Task<ActionResult> Update(CargoDTO dto)
+        public async Task<ActionResult> Update(ArlDTO dto)
         {
-            await _cargoService.Update(dto);
+            await _arlService.Update(dto);
             return Ok(new { Message = "ok" });
 
         }

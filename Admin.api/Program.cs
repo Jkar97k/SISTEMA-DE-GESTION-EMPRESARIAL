@@ -1,7 +1,5 @@
 using Admin.api.Configuration;
 using Admin.Entities.Modelos;
-using Admin.Interfaces.Base;
-using Admin.Interfaces.Repositories.Repositories;
 using Admin.Repositories.Base;
 using Admin.Repositories.Repositories;
 using Admin.Services.Masters;
@@ -12,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-SerilogIoc.ConfigLogSeqAndsqlServer(builder);
+SerilogIoc.ConfigLogSeq(builder);
 
 Admin_DataBaseIoC.ConfigureSQLService(builder);
 
@@ -26,11 +24,6 @@ Admin_BusinessLogicIoC.ValidacionesService(builder);
 
 Admin_BusinessLogicIoC.UtilidadesService(builder);
 
-//Services
-ServiceConfig.Configure(builder.Services);
-
-//Repositories
-RepositoryConfig.Configure(builder.Services);
 
 
 // Add services to the container.

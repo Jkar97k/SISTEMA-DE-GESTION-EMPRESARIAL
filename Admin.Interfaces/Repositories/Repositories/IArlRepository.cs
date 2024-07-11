@@ -1,5 +1,4 @@
 ﻿using Admin.Entities.Modelos;
-using Admin.Interfaces.Base;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

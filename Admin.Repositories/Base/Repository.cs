@@ -1,5 +1,5 @@
 ﻿using Admin.Entities.Modelos;
-using Admin.Interfaces.Base;
+using Admin.Interfaces;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;

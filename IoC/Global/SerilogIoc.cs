@@ -55,6 +55,21 @@ namespace IoC.Global
                 .CreateLogger();
 
             builder.Host.UseSerilog(Log.Logger);
+
+        }
+
+        public static void ConfigLogSeq(WebApplicationBuilder builder)
+        {
+            IConfiguration configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(configuration)
+                .CreateLogger();
+
+            builder.Host.UseSerilog(Log.Logger);
+
         }
     }
 }

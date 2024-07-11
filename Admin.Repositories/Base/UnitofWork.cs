@@ -1,6 +1,7 @@
 ﻿using Admin.Entities.Modelos;
-using Admin.Interfaces.Repositories.Repositories;
+using Admin.Interfaces;
 using Admin.Repositories.Repositories;
+using Admin.Repositories.Repositories.Maestros;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;

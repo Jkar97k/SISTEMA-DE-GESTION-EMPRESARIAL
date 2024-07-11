@@ -1,5 +1,5 @@
 ﻿using Admin.Entities.Modelos;
-using Admin.Interfaces.Repositories.Repositories;
+using Admin.Interfaces;
 using Admin.Repositories.Base;
 using System;
 using System.Collections.Generic;
