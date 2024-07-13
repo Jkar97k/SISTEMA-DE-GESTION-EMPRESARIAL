@@ -1,4 +1,4 @@
-using Admin.api.Configuration;
+using Admin.api;
 using Admin.Entities.Modelos;
 using Admin.Repositories.Base;
 using Admin.Repositories.Repositories;

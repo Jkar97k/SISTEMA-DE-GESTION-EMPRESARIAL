@@ -1,18 +1,11 @@
-﻿using Admin.Entities.Modelos;
-using Admin.Interfaces.Base;
-using Admin.Interfaces.Repositories.Repositories;
+﻿
+using Admin.Interfaces;
 using Admin.Repositories.Base;
-using FluentValidation.AspNetCore;
-using FluentValidation;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Admin.Services.Masters;
 using Admin.Repositories.Repositories.Maestros;
+using Admin.Services;
 
 namespace IoC.Api.Admin
 {

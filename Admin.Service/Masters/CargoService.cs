@@ -15,26 +15,37 @@ namespace Admin.Services
     {
         private readonly IUnitofWork _unitOfWork;
         private readonly IMapper _mapper;
-        //private readonly ILogger<CargoService> _logger;
+        private readonly ILogger<CargoService> _logger;
 
-        public CargoService(IUnitofWork unitOfWork, IMapper mapper)
+        public CargoService(IUnitofWork unitOfWork, IMapper mapper, ILogger<CargoService> logger)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            //_logger = logger;
+            _logger = logger;
+            _logger = logger;
         }
 
         public async Task Create(CreateCargoDTO dto)
         {
-            var data = await _unitOfWork.CargoRepository.GetOne(x => x.Nombre == dto.Nombre);
-
-            if (data != null)
+            try 
             {
-                return;
+                var data = await _unitOfWork.CargoRepository.GetOne(x => x.Nombre == dto.Nombre);
+
+                if (data != null)
+                {
+                    _logger.LogWarning("Ya Existe en la base de Datos");
+                    return;
+                }
+                var entity = _mapper.Map<Cargo>(dto);
+                _unitOfWork.CargoRepository.Add(entity);
+                await _unitOfWork.SaveChanges();
+                _logger.LogInformation("Se a Creado con Exito El Cargo");
+            } 
+            catch (Exception ex) 
+            {
+                _logger.LogError(message: "Error al ejecutar ", args: ex);
             }
-            var entity = _mapper.Map<Cargo>(dto);
-            _unitOfWork.CargoRepository.Add(entity);
-           await _unitOfWork.SaveChanges();
+
         }
 
         public async Task<List<CargoDTO>> GetAllAsync()

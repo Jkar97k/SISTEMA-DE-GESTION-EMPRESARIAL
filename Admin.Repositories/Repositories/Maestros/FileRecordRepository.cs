@@ -1,6 +1,7 @@
 ﻿using Admin.Entities.Modelos;
 using Admin.Interfaces;
 using Admin.Repositories.Base;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Admin.Repositories.Repositories.Maestros
 {
     public class FileRecordRepository : Repository<FileRecord>, IFileRecordRepository
     {
-        public FileRecordRepository(SgeAdminContext context) : base(context)
+        public FileRecordRepository(SgeAdminContext context, IMapper mapper) : base(context, mapper)
         {
         }
     }
