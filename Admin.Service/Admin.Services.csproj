@@ -7,14 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Admin.DTO\Admin.DTO.csproj" />
-    <ProjectReference Include="..\Admin.Interfaces\Admin.Interfaces.csproj" />
-    <ProjectReference Include="..\Exceptions\Admin.Exceptions.csproj" />
+    <Compile Remove="Archivos\**" />
+    <Compile Remove="Order\**" />
+    <EmbeddedResource Remove="Archivos\**" />
+    <EmbeddedResource Remove="Order\**" />
+    <None Remove="Archivos\**" />
+    <None Remove="Order\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Archivos\" />
-    <Folder Include="Order\" />
+    <ProjectReference Include="..\Admin.DTO\Admin.DTO.csproj" />
+    <ProjectReference Include="..\Admin.Interfaces\Admin.Interfaces.csproj" />
+    <ProjectReference Include="..\Exceptions\Admin.Exceptions.csproj" />
   </ItemGroup>
 
 </Project>

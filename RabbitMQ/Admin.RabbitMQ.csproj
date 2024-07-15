@@ -5,5 +5,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
+	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\RTM.Interfaces\RTM.Interfaces.csproj" />
+	</ItemGroup>
 </Project>
