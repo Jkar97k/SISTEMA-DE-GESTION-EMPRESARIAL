@@ -21,12 +21,12 @@ namespace Admin.Services
             _unitOfWork = unitofWork;
         }
 
-        public async Task<List<EpDTO>> GetAll()
+        public async Task<List<GenericDTO>> GetAll()
         {
             var data = await _unitOfWork.EpRepository.GetAllAsync();
-            return _mapper.Map<List<EpDTO>>(data);
+            return _mapper.Map<List<GenericDTO>>(data);
         }
-        public async Task Add(CreateEpDTO dto)
+        public async Task Add(CreateGenericDTO dto)
         {
             var data = await _unitOfWork.EpRepository.GetOne(x => x.Nombre == dto.Nombre);
             if (data != null)
@@ -37,7 +37,7 @@ namespace Admin.Services
             _unitOfWork.EpRepository.Add(entity);
             await _unitOfWork.SaveChanges();
         }
-        public async Task Update(EpDTO dto)
+        public async Task Update(GenericDTO dto)
         {
             var data = await _unitOfWork.EpRepository.GetOne(x => x.Id == dto.Id);
             if (data == null)
@@ -48,7 +48,7 @@ namespace Admin.Services
             _unitOfWork.EpRepository.UpdateAsync(entity);
             await _unitOfWork.SaveChanges();
         }
-        public async Task Delete(EpDTO dto)
+        public async Task Delete(GenericDTO dto)
         {
             var data = await _unitOfWork.EpRepository.GetOne(x => x.Id == dto.Id);
             if (data == null)

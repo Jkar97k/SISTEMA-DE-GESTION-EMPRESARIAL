@@ -15,22 +15,22 @@ namespace Configurations.AutoMapper
         public Admin_Api_MappingProfile()
         {
             
-            CreateMap<Arl, ArlDTO>();
-            CreateMap<Arl, CreateArlDTO>();
-            CreateMap<Cargo, CargoDTO>();
-            CreateMap<Cargo, CreateCargoDTO>();
-            CreateMap<Ceco,CecoDTO >();
-            CreateMap<Ceco, CreateCecoDTO>();
+            CreateMap<Arl, GenericDTO>();
+            CreateMap<Arl, CreateGenericDTO>();
+            CreateMap<Cargo, GenericDTO>();
+            CreateMap<Cargo, CreateGenericDTO>();
+            CreateMap<Ceco,GenericDTO >();
+            CreateMap<Ceco, CreateGenericDTO>();
             CreateMap<Empleado,EmpleadosDTO>();
             CreateMap<Empleado,CreateEmpleadoDTO>();
-            CreateMap<Ep,EpDTO>();
-            CreateMap<Ep,CreateEpDTO>();
-            CreateMap<FondosPensione,FondosPensionDTO>();
-            CreateMap<FondosPensione,CreateFondosPension>();
+            CreateMap<Ep,GenericDTO>();
+            CreateMap<Ep,CreateGenericDTO>();
+            CreateMap<FondosPensione,GenericDTO>();
+            CreateMap<FondosPensione,CreateGenericDTO>();
             CreateMap<Servicio,ServiciosDTO>();
             CreateMap<Servicio,CreateServicioDTO>();
-            CreateMap<TiposContrato,TiposContratoDTO>();
-            CreateMap<TiposContrato,CreateTiposContratoDTO>();
+            CreateMap<TiposContrato,GenericDTO>();
+            CreateMap<TiposContrato,CreateGenericDTO>();
         }
     }
 }

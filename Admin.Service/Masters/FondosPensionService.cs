@@ -21,12 +21,12 @@ namespace Admin.Services
             _unitOfWork = unitofWork;
         }
 
-        public async Task<List<FondosPensionDTO>> GetAll()
+        public async Task<List<GenericDTO>> GetAll()
         {
             var data = await _unitOfWork.FondosPensionRepository.GetAllAsync();
-            return _mapper.Map<List<FondosPensionDTO>>(data);
+            return _mapper.Map<List<GenericDTO>>(data);
         }
-        public async Task Add(CreateFondosPension dto)
+        public async Task Add(CreateGenericDTO dto)
         {
             var data = await _unitOfWork.FondosPensionRepository.GetOne(x => x.Nombre == dto.Nombre);
             if (data != null)
@@ -37,7 +37,7 @@ namespace Admin.Services
             _unitOfWork.FondosPensionRepository.Add(entity);
             await _unitOfWork.SaveChanges();
         }
-        public async Task Update(FondosPensionDTO dto)
+        public async Task Update(GenericDTO dto)
         {
             var data = await _unitOfWork.FondosPensionRepository.GetOne(x => x.Id == dto.Id);
             if (data == null)
@@ -48,7 +48,7 @@ namespace Admin.Services
             _unitOfWork.FondosPensionRepository.UpdateAsync(entity);
             await _unitOfWork.SaveChanges();
         }
-        public async Task Delete(FondosPensionDTO dto)
+        public async Task Delete(GenericDTO dto)
         {
             var data = await _unitOfWork.FondosPensionRepository.GetOne(x => x.Id == dto.Id);
             if (data == null)

@@ -28,7 +28,7 @@ namespace Admin.api.Controllers
 
         // [AllowAnonymous]
         [HttpPost("CreateCargo")]
-        public async Task<IActionResult> CreateUser(CreateArlDTO dto)
+        public async Task<IActionResult> CreateUser(CreateGenericDTO dto)
         {
             await _arlService.Add(dto);
 
@@ -38,7 +38,7 @@ namespace Admin.api.Controllers
 
 
         [HttpPut("Put")]
-        public async Task<ActionResult> Update(ArlDTO dto)
+        public async Task<ActionResult> Update(GenericDTO dto)
         {
             await _arlService.Update(dto);
             return Ok(new { Message = "ok" });

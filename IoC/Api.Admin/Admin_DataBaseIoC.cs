@@ -20,5 +20,13 @@ namespace IoC.Api.Admin
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
         }
+        public static void ConfigureMySQLService(WebApplicationBuilder builder)
+        {
+            builder.Services.AddDbContext<SgeAdminContext>(
+                (DbContextOptionsBuilder options) =>
+                {
+                    options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection"));
+                });
+        }
     }
 }

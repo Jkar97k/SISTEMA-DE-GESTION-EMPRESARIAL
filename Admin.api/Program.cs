@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 SerilogIoc.ConfigLogSeq(builder);
 
-Admin_DataBaseIoC.ConfigureSQLService(builder);
+Admin_DataBaseIoC.ConfigureMySQLService(builder);
 
 Admin_AutoMapperIoC.ConfigureService(builder);
 

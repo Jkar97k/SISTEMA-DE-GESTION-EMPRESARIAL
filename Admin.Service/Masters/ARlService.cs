@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Admin.Entities.Modelos;
-
 using Admin.DTO;
 using Admin.Interfaces;
 
@@ -18,12 +17,12 @@ namespace Admin.Services
             _unitOfWork = unitofWork;
         }
 
-        public async Task<List<ArlDTO>> GetAll()
+        public async Task<List<GenericDTO>> GetAll()
         {
             var data = await _unitOfWork.ArlRepository.GetAllAsync();
-            return _mapper.Map<List<ArlDTO>>(data);
+            return _mapper.Map<List<GenericDTO>>(data);
         }
-        public async Task Add(CreateArlDTO dto)
+        public async Task Add(CreateGenericDTO dto)
         {
             var data = await _unitOfWork.ArlRepository.GetOne(x => x.Nombre == dto.Nombre);
             if (data != null)
@@ -34,7 +33,7 @@ namespace Admin.Services
             _unitOfWork.ArlRepository.Add(entity);
             await _unitOfWork.SaveChanges();
         }
-        public async Task Update(ArlDTO dto)
+        public async Task Update(GenericDTO dto)
         {
             var data = await _unitOfWork.ArlRepository.GetOne(x => x.Id == dto.Id);
             if (data == null)
@@ -45,7 +44,7 @@ namespace Admin.Services
             _unitOfWork.ArlRepository.UpdateAsync(entity);
             await _unitOfWork.SaveChanges();
         }
-        public async Task Delete(ArlDTO dto)
+        public async Task Delete(GenericDTO dto)
         {
             var data = await _unitOfWork.ArlRepository.GetOne(x => x.Id == dto.Id);
             if (data == null)

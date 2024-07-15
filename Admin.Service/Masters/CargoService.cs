@@ -25,7 +25,7 @@ namespace Admin.Services
             _logger = logger;
         }
 
-        public async Task Create(CreateCargoDTO dto)
+        public async Task Create(CreateGenericDTO dto)
         {
             try 
             {
@@ -48,7 +48,7 @@ namespace Admin.Services
 
         }
 
-        public async Task<List<CargoDTO>> GetAllAsync()
+        public async Task<List<GenericDTO>> GetAllAsync()
         {
             //_logger.LogInformation("Este mensaje es para el logger");
             var data = await _unitOfWork.CargoRepository.GetAllAsync();
@@ -56,10 +56,10 @@ namespace Admin.Services
 
             //_logger.LogError("Error al crear la orden de trabajo"); // Registrar el mensaje de error
             //throw new Exception("Error al crear la orden de trabajo");
-            return _mapper.Map<List<CargoDTO>>(data);
+            return _mapper.Map<List<GenericDTO>>(data);
         }
 
-        public async Task Update(CargoDTO dto)
+        public async Task Update(GenericDTO dto)
         {
             var dataG = await _unitOfWork.CargoRepository.GetOne(x => x.Id == dto.Id);
 
@@ -83,7 +83,7 @@ namespace Admin.Services
             return;
         }
 
-        public async Task Delete(CargoDTO dto) 
+        public async Task Delete(GenericDTO dto) 
         {
             var dataG = await _unitOfWork.CargoRepository.GetOne(x => x.Id == dto.Id);
 

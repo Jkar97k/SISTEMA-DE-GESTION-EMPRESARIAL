@@ -5,9 +5,9 @@ namespace Admin.Interfaces
 {
     public interface ICargoService
     {
-        Task Create(CreateCargoDTO dto);
-        Task Delete(CargoDTO dto);
-        Task<List<CargoDTO>> GetAllAsync();
-        Task Update(CargoDTO dto);
+        Task Create(CreateGenericDTO dto);
+        Task Delete(GenericDTO dto);
+        Task<List<GenericDTO>> GetAllAsync();
+        Task Update(GenericDTO dto);
     }
 }

@@ -21,12 +21,12 @@ namespace Admin.Services.Masters
             _unitOfWork = unitofWork;
         }
 
-        public async Task<List<TiposContratoDTO>> GetAll()
+        public async Task<List<GenericDTO>> GetAll()
         {
             var data = await _unitOfWork.TipoContratoRepository.GetAllAsync();
-            return _mapper.Map<List<TiposContratoDTO>>(data);
+            return _mapper.Map<List<GenericDTO>>(data);
         }
-        public async Task Add(CreateTiposContratoDTO dto)
+        public async Task Add(CreateGenericDTO dto)
         {
             var data = await _unitOfWork.TipoContratoRepository.GetOne(x => x.Nombre == dto.Nombre);
             if (data != null)
@@ -37,7 +37,7 @@ namespace Admin.Services.Masters
             _unitOfWork.TipoContratoRepository.Add(entity);
             await _unitOfWork.SaveChanges();
         }
-        public async Task Update(TiposContratoDTO dto)
+        public async Task Update(GenericDTO dto)
         {
             var data = await _unitOfWork.TipoContratoRepository.GetOne(x => x.Id == dto.Id);
             if (data == null)
@@ -48,7 +48,7 @@ namespace Admin.Services.Masters
             _unitOfWork.TipoContratoRepository.UpdateAsync(entity);
             await _unitOfWork.SaveChanges();
         }
-        public async Task Delete(TiposContratoDTO dto)
+        public async Task Delete(GenericDTO dto)
         {
             var data = await _unitOfWork.TipoContratoRepository.GetOne(x => x.Id == dto.Id);
             if (data == null)

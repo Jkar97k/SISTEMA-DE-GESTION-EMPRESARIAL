@@ -4,9 +4,9 @@ namespace Admin.Interfaces
 {
     public interface IEpService
     {
-        Task Add(CreateEpDTO dto);
-        Task Delete(EpDTO dto);
-        Task<List<EpDTO>> GetAll();
-        Task Update(EpDTO dto);
+        Task Add(CreateGenericDTO dto);
+        Task Delete(GenericDTO dto);
+        Task<List<GenericDTO>> GetAll();
+        Task Update(GenericDTO dto);
     }
 }

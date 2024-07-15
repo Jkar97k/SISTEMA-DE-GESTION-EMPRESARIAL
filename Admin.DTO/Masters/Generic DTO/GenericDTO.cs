@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Admin.DTO
 {
-    public class EpDTO
+    public class GenericDTO
     {
         public int Id { get; set; }
 

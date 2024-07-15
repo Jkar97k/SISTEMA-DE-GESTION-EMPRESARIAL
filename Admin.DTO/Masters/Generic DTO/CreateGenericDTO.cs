@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Admin.DTO
 {
-    public class TiposContratoDTO
+    public class CreateGenericDTO
     {
-        public int Id { get; set; }
-
         public string Nombre { get; set; }
     }
 }

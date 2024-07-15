@@ -29,7 +29,7 @@ namespace Admin.api.Controllers
 
        // [AllowAnonymous]
         [HttpPost("CreateCargo")]
-        public async Task<IActionResult> CreateUser(CreateCargoDTO dto)
+        public async Task<IActionResult> CreateUser(CreateGenericDTO dto)
         {
             await _cargoService.Create(dto);
 
@@ -39,7 +39,7 @@ namespace Admin.api.Controllers
 
 
         [HttpPut("Put")]
-        public async Task<ActionResult> Update(CargoDTO dto)
+        public async Task<ActionResult> Update(GenericDTO dto)
         {
             await _cargoService.Update(dto);
             return Ok(new { Message = "ok" });

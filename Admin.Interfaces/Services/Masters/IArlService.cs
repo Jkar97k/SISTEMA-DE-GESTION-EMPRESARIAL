@@ -4,9 +4,9 @@ namespace Admin.Interfaces
 {
     public interface IArlService
     {
-        Task Add(CreateArlDTO dto);
-        Task Delete(ArlDTO dto);
-        Task<List<ArlDTO>> GetAll();
-        Task Update(ArlDTO dto);
+        Task Add(CreateGenericDTO dto);
+        Task Delete(GenericDTO dto);
+        Task<List<GenericDTO>> GetAll();
+        Task Update(GenericDTO dto);
     }
 }
