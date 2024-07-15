@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Admin.DTO
 {
-    public class CreateFileRecord
+    public class CreateFileRecordDTO
     {
         public string Bucket { get; set; }
 
