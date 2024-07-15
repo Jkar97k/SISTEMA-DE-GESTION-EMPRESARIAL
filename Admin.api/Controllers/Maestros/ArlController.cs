@@ -4,7 +4,7 @@ using Admin.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Admin.api.Controllers
+namespace Admin.api.Controllers.Maestros
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -22,7 +22,7 @@ namespace Admin.api.Controllers
         [HttpGet("Get")]
         public async Task<IActionResult> Get()
         {
-            return Ok(new { Result = await _arlService.GetAll()});
+            return Ok(new { Result = await _arlService.GetAll() });
         }
 
 

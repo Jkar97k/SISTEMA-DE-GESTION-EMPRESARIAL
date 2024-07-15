@@ -8,14 +8,12 @@ namespace Admin.DTO
 {
     public class CreateFileRecord
     {
-        public string Nombre { get; set; } 
+        public string Bucket { get; set; }
 
-        public string ContentType { get; set; } 
+        public string Nombre { get; set; }
 
-        public byte[]? FileLocation { get; set; }
+        public string ContentType { get; set; }
 
-        public string Ruta { get; set; } 
-
-        public string Guid { get; set; } 
+        public string Guid { get; set; }
     }
 }

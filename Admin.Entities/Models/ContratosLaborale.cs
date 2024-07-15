@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Admin.Entities.Modelos;
+namespace Admin.Entities.Models;
 
 public partial class ContratosLaborale
 {
@@ -30,18 +30,4 @@ public partial class ContratosLaborale
     public string HojaVidaRef { get; set; }
 
     public string SoportesRef { get; set; }
-
-    public virtual Arl Arl { get; set; } 
-
-    public virtual Cargo Cargo { get; set; }
-
-    public virtual Empleado Empleado { get; set; } 
-
-    public virtual Ep Eps { get; set; }
-
-    public virtual FondosPensione FondoPension { get; set; }
-
-    public virtual Servicio Servicio { get; set; }
-
-    public virtual TiposContrato TipoContrato { get; set; } 
 }

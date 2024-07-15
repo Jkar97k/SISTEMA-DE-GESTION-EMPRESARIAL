@@ -11,6 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\RTM.Interfaces\RTM.Interfaces.csproj" />
+		<ProjectReference Include="..\Admin.Interfaces\Admin.Interfaces.csproj" />
+		
 	</ItemGroup>
 </Project>

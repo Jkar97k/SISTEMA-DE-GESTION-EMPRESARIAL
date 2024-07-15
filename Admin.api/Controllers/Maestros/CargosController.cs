@@ -1,11 +1,10 @@
-﻿
-using Admin.DTO;
+﻿using Admin.DTO;
 using Admin.Interfaces;
 using Admin.Services.Masters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Admin.api.Controllers
+namespace Admin.api.Controllers.Maestros
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -23,11 +22,11 @@ namespace Admin.api.Controllers
         [HttpGet("Get")]
         public async Task<IActionResult> Get()
         {
-            return Ok(new { Result = await _cargoService.GetAllAsync()});
+            return Ok(new { Result = await _cargoService.GetAllAsync() });
         }
 
 
-       // [AllowAnonymous]
+        // [AllowAnonymous]
         [HttpPost("CreateCargo")]
         public async Task<IActionResult> CreateUser(CreateGenericDTO dto)
         {
