@@ -6,38 +6,22 @@ using System.Threading.Tasks;
 
 namespace Admin.DTO
 {
-    public class EmpleadosDTO
-    {
-        public int Id { get; set; }
-
-        public int TipoDocumento { get; set; }
-
-        public string NumeroDocumento { get; set; }
-
-        public string Nombres { get; set; }
-
-        public string Apellidos { get; set; }
-
-        public string CorreoPersonal { get; set; }
-
-        public string CorreoEmpresarial { get; set; }
-
-        public string Direccion { get; set; }
-
-        public long Telefono { get; set; }
-
-        public long ContactoEmergencia { get; set; }
-
-        public long TelefonoContactoEmergencia { get; set; }
-
-        public string Guid { get; set; }
-
-        public DateTime Created { get; set; }
-
-        public string ModifiedBy { get; set; }
-
-        public DateTime ModifiedDate { get; set; }
-
-        public bool Status { get; set; }
-    }
+    public record EmpleadosDTO(
+        int Id,
+        int TipoDocumento,
+        string NumeroDocumento,
+        string Nombres,
+        string Apellidos,
+        string CorreoPersonal,
+        string CorreoEmpresarial,
+        string Direccion,
+        long Telefono,
+        long ContactoEmergencia,
+        long TelefonoContactoEmergencia,
+        string Guid,
+        DateTime Created,
+        string ModifiedBy,
+        DateTime ModifiedDate,
+        bool Status
+        );
 }

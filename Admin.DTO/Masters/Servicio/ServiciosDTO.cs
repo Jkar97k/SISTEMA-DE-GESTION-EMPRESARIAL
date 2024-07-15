@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace Admin.DTO
 {
-    public class ServiciosDTO
-    {
-        public int Id { get; set; }
-
-        public string Nombre { get; set; }
-
-        public int Cecoid { get; set; }
-    }
+    public record ServiciosDTO(
+        int Id,
+        string Nombre,
+        int Cecoid
+        );
 }

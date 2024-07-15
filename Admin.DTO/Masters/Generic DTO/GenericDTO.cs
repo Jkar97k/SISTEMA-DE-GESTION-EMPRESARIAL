@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Admin.DTO
 {
-    public class GenericDTO
-    {
-        public int Id { get; set; }
-
-        public string Nombre { get; set; }
-    }
+    public record GenericDTO(
+        int Id,
+        string Nombre
+        );
 }
