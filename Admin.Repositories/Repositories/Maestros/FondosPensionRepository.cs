@@ -1,4 +1,4 @@
-﻿using Admin.Entities.Modelos;
+﻿using Admin.Entities.Models;
 using Admin.Interfaces;
 using Admin.Repositories.Base;
 using AutoMapper;

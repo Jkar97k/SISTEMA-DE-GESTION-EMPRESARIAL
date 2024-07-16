@@ -1,4 +1,4 @@
-﻿using Admin.Entities.Modelos;
+﻿using Admin.Entities.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

@@ -10,6 +10,7 @@ namespace Admin.Interfaces
         ICargoRepository CargoRepository { get; }
         ICecoRepository CecoRepository { get; }
         IEmpleadosRepository EmpleadosRepository { get; }
+        IContratosLaboraleRepository ContratosLaboraleRepository { get; }
         IEpRepository EpRepository { get; }
         IFileRecordRepository FileRecordRepository { get; }
         IFondosPensionRepository FondosPensionRepository { get; }

@@ -17,9 +17,9 @@
     <ProjectReference Include="..\Configurations\Configurations.csproj" />
     <ProjectReference Include="..\IoC\IoC.csproj" />
   </ItemGroup>
-	
-	<ItemGroup>
-		<Folder Include="wwwroot\" />
-	</ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
 
 </Project>

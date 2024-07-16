@@ -1,4 +1,4 @@
-﻿using Admin.Entities.Modelos;
+﻿using Admin.Entities.Models;
 using Admin.Interfaces;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -25,9 +25,9 @@ namespace Admin.Repositories.Base
             _mapper = mapper;
         }
 
-        public void Add(T entity)
+        public async Task Add(T entity)
         {
-            _dbSet.AddAsync(entity);
+            await _dbSet.AddAsync(entity);
         }
 
         public void UpdateAsync(T entity)

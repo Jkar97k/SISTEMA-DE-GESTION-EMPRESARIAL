@@ -18,5 +18,16 @@ namespace Admin.Services.Masters
             _mapper = mapper;
             _unitOfWork = unitofWork;
         }
+
+        public async Task Delete(int id)
+        {
+            var data = await _unitOfWork.ContratosLaboraleRepository.GetOne(x => x.Id == id);
+            if (data == null)
+            {
+                return;
+            }
+            _unitOfWork.ContratosLaboraleRepository.DeleteAsync(data);
+            await _unitOfWork.SaveChanges();
+        }
     }
 }

@@ -1,5 +1,5 @@
 using Admin.api;
-using Admin.Entities.Modelos;
+using Admin.Entities.Models;
 using Admin.Repositories.Base;
 using Admin.Repositories.Repositories;
 using Admin.Services.Masters;

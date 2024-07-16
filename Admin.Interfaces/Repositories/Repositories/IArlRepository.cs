@@ -1,4 +1,4 @@
-﻿using Admin.Entities.Modelos;
+﻿using Admin.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

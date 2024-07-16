@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Admin.DTO
 {
-    public record ContratosLaboralesDTO(
-        int Id,
+    public record CreateContratosLaboralesDTO(
         int EmpleadoId,
         int ServicioId,
         int CargoId,

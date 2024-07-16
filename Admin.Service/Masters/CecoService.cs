@@ -1,5 +1,5 @@
 ﻿using Admin.DTO;
-using Admin.Entities.Modelos;
+using Admin.Entities.Models;
 using Admin.Interfaces;
 using AutoMapper;
 using System;
@@ -48,15 +48,14 @@ namespace Admin.Services
             _unitOfWork.CecoRepository.UpdateAsync(entity);
             await _unitOfWork.SaveChanges();
         }
-        public async Task Delete(GenericDTO dto)
+        public async Task Delete(int id)
         {
-            var data = await _unitOfWork.CecoRepository.GetOne(x => x.Id == dto.Id);
+            var data = await _unitOfWork.CecoRepository.GetOne(x => x.Id == id);
             if (data == null)
             {
                 return;
             }
-            var entity = _mapper.Map<Ceco>(dto);
-            _unitOfWork.CecoRepository.DeleteAsync(entity);
+            _unitOfWork.CecoRepository.DeleteAsync(data);
             await _unitOfWork.SaveChanges();
         }
     }

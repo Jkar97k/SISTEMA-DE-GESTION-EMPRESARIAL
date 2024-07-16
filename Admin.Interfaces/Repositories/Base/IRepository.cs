@@ -5,7 +5,7 @@ namespace Admin.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        void Add(T entity);
+        Task Add(T entity);
         void DeleteAsync(T entity);
         Task<List<T>> GetAllAsync();
         Task<T?> GetOne(Expression<Func<T, bool>> funcion);

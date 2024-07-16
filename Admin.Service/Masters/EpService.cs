@@ -1,5 +1,5 @@
 ﻿using Admin.DTO;
-using Admin.Entities.Modelos;
+using Admin.Entities.Models;
 using Admin.Interfaces;
 using AutoMapper;
 using System;
@@ -48,15 +48,14 @@ namespace Admin.Services
             _unitOfWork.EpRepository.UpdateAsync(entity);
             await _unitOfWork.SaveChanges();
         }
-        public async Task Delete(GenericDTO dto)
+        public async Task Delete(int id)
         {
-            var data = await _unitOfWork.EpRepository.GetOne(x => x.Id == dto.Id);
+            var data = await _unitOfWork.EpRepository.GetOne(x => x.Id == id);
             if (data == null)
             {
                 return;
             }
-            var entity = _mapper.Map<Ep>(dto);
-            _unitOfWork.EpRepository.DeleteAsync(entity);
+            _unitOfWork.EpRepository.DeleteAsync(data);
             await _unitOfWork.SaveChanges();
         }
     }

@@ -1,6 +1,6 @@
 ﻿
 using Admin.DTO;
-using Admin.Entities.Modelos;
+using Admin.Entities.Models;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -15,22 +15,24 @@ namespace Configurations.AutoMapper
         public Admin_Api_MappingProfile()
         {
             
-            CreateMap<Arl, GenericDTO>();
-            CreateMap<Arl, CreateGenericDTO>();
-            CreateMap<Cargo, GenericDTO>();
-            CreateMap<Cargo, CreateGenericDTO>();
-            CreateMap<Ceco,GenericDTO >();
-            CreateMap<Ceco, CreateGenericDTO>();
-            CreateMap<Empleado,EmpleadosDTO>();
-            CreateMap<Empleado,CreateEmpleadoDTO>();
-            CreateMap<Ep,GenericDTO>();
-            CreateMap<Ep,CreateGenericDTO>();
-            CreateMap<FondosPensione,GenericDTO>();
-            CreateMap<FondosPensione,CreateGenericDTO>();
-            CreateMap<Servicio,ServiciosDTO>();
-            CreateMap<Servicio,CreateServicioDTO>();
-            CreateMap<TiposContrato,GenericDTO>();
-            CreateMap<TiposContrato,CreateGenericDTO>();
+            CreateMap<Arl, GenericDTO>().ReverseMap();
+            CreateMap<Arl, CreateGenericDTO>().ReverseMap();
+            CreateMap<Cargo, GenericDTO>().ReverseMap();
+            CreateMap<Cargo, CreateGenericDTO>().ReverseMap();
+            CreateMap<Ceco,GenericDTO >().ReverseMap();
+            CreateMap<Ceco, CreateGenericDTO>().ReverseMap();
+            CreateMap<Empleado,EmpleadosDTO>().ReverseMap();
+            CreateMap<Empleado,CreateEmpleadoDTO>().ReverseMap();
+            CreateMap<ContratosLaborale,ContratosLaboralesDTO>().ReverseMap();
+            CreateMap<ContratosLaborale,CreateContratosLaboralesDTO>().ReverseMap();
+            CreateMap<Ep,GenericDTO>().ReverseMap();
+            CreateMap<Ep,CreateGenericDTO>().ReverseMap();
+            CreateMap<FondosPensione,GenericDTO>().ReverseMap();
+            CreateMap<FondosPensione,CreateGenericDTO>().ReverseMap();
+            CreateMap<Servicio,ServiciosDTO>().ReverseMap();
+            CreateMap<Servicio,CreateServicioDTO>().ReverseMap();
+            CreateMap<TiposContrato,GenericDTO>().ReverseMap();
+            CreateMap<TiposContrato,CreateGenericDTO>().ReverseMap();
         }
     }
 }

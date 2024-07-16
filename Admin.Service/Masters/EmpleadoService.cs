@@ -1,5 +1,5 @@
 ﻿using Admin.DTO;
-using Admin.Entities.Modelos;
+using Admin.Entities.Models;
 using Admin.Interfaces;
 using AutoMapper;
 using System;
@@ -20,44 +20,67 @@ namespace Admin.Services
             _mapper = mapper;
             _unitOfWork = unitofWork;
         }
+        public async Task CreateEmpleado(RequestCreateEmpleado request)
+        {
+            using (var transaction = _unitOfWork.BeginTransaction())
+            {
+                try
+                {
+                    var data = await _unitOfWork.EmpleadosRepository.GetOne(x => x.NumeroDocumento == request.Empleado.NumeroDocumento);
+                    if (data != null)
+                    {
+                        return;
+                    }
+                    var empleadoDT = _mapper.Map<Empleado>(request.Empleado);
+                    empleadoDT.Guid = Guid.NewGuid().ToString();
+                    empleadoDT.Created = DateTime.Now;
+                    empleadoDT.ModifiedBy = "JKAr";
+                    empleadoDT.ModifiedDate = DateTime.Now;
+                    empleadoDT.Status = true;
+                    await _unitOfWork.EmpleadosRepository.Add(empleadoDT);
+                    await _unitOfWork.SaveChanges();
 
-        public async Task<List<EmpleadosDTO>> GetAll()
-        {
-            var data = await _unitOfWork.EmpleadosRepository.GetAllAsync();
-            return _mapper.Map<List<EmpleadosDTO>>(data);
-        }
-        public async Task Add(CreateEmpleadoDTO dto)
-        {
-            var data = await _unitOfWork.EmpleadosRepository.GetOne(x => x.NumeroDocumento == dto.NumeroDocumento);
-            if (data != null)
-            {
-                return;
+                    var contrato = _mapper.Map<ContratosLaborale>(request.ContratosLaborale);
+                    contrato.EmpleadoId = empleadoDT.Id;
+                    await _unitOfWork.ContratosLaboraleRepository.Add(contrato);
+                    await _unitOfWork.SaveChanges();
+
+                    //ActivarEmpleado(request);
+
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                }
             }
-            var entity = _mapper.Map<Empleado>(dto);
-            _unitOfWork.EmpleadosRepository.Add(entity);
-            await _unitOfWork.SaveChanges();
         }
-        public async Task Update(EmpleadosDTO dto)
+
+        public async Task<List<RequestEmpleado>> GetToAll()
         {
-            var data = await _unitOfWork.EmpleadosRepository.GetOne(x => x.Id == dto.Id);
-            if (data == null)
+            var empleadosData = await _unitOfWork.EmpleadosRepository.GetAllAsync();
+            var contratosData = await _unitOfWork.ContratosLaboraleRepository.GetAllAsync();
+
+            var empleados = _mapper.Map<List<EmpleadosDTO>>(empleadosData);
+            var contratos = _mapper.Map<List<ContratosLaboralesDTO>>(contratosData);
+
+            var contratosPorEmpleadoId = contratos.ToDictionary(c => c.EmpleadoId);
+
+            var result = new List<RequestEmpleado>();
+
+            foreach (var empl in empleados)
             {
-                return;
+                if (contratosPorEmpleadoId.TryGetValue(empl.Id, out var contrato))
+                {
+                    var requestempleado = new RequestEmpleado
+                    {
+                        EmpleadoDT = empl,
+                        ContratosLaborales = contrato
+                    };
+                    result.Add(requestempleado);
+                }
             }
-            var entity = _mapper.Map(dto, data);
-            _unitOfWork.EmpleadosRepository.UpdateAsync(entity);
-            await _unitOfWork.SaveChanges();
-        }
-        public async Task Delete(EmpleadosDTO dto)
-        {
-            var data = await _unitOfWork.EmpleadosRepository.GetOne(x => x.Id == dto.Id);
-            if (data == null)
-            {
-                return;
-            }
-            var entity = _mapper.Map<Empleado>(dto);
-            _unitOfWork.EmpleadosRepository.DeleteAsync(entity);
-            await _unitOfWork.SaveChanges();
+            return result;
         }
     }
 }

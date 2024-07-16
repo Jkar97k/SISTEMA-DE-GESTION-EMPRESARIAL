@@ -22,7 +22,8 @@ namespace Admin.api.Controllers.Maestros
         [HttpGet("Get")]
         public async Task<IActionResult> Get()
         {
-            return Ok(new { Result = await _arlService.GetAll() });
+            var date = await _arlService.GetAll();
+            return Ok(date);
         }
 
 
@@ -45,16 +46,12 @@ namespace Admin.api.Controllers.Maestros
 
         }
 
-        //[HttpDelete("Delete/{id}")]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    await _usuarioService.Deletebyguild(guid);
+        [HttpDelete("Delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _arlService.Delete(id);
+            return Ok();
 
-        //    if (_usuarioService.StatusCode != 200)
-        //        return StatusCode(_usuarioService.StatusCode, _usuarioService.Message);
-
-        //    return Ok(new { Message = _usuarioService.Message });
-
-        //}
+        }
     }
 }

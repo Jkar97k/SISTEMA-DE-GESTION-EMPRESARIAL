@@ -1,5 +1,5 @@
 ﻿using Admin.DTO;
-using Admin.Entities.Modelos;
+using Admin.Entities.Models;
 using Admin.Interfaces;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
@@ -83,18 +83,16 @@ namespace Admin.Services
             return;
         }
 
-        public async Task Delete(GenericDTO dto) 
+        public async Task Delete(int id)
         {
-            var dataG = await _unitOfWork.CargoRepository.GetOne(x => x.Id == dto.Id);
+            var dataG = await _unitOfWork.CargoRepository.GetOne(x => x.Id == id);
 
             if (dataG == null)
             {
                 return;
             }
-            
-            var entity = _mapper.Map<Cargo>(dto);
-
-            _unitOfWork.CargoRepository.DeleteAsync(entity);
+  
+            _unitOfWork.CargoRepository.DeleteAsync(dataG);
 
             await _unitOfWork.SaveChanges();
         }
