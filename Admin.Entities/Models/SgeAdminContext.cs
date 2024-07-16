@@ -71,6 +71,20 @@ public partial class SgeAdminContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
+            entity.HasIndex(e => e.Arlid, "ARLId");
+
+            entity.HasIndex(e => e.CargoId, "CargoId");
+
+            entity.HasIndex(e => e.Epsid, "EPSId");
+
+            entity.HasIndex(e => e.EmpleadoId, "EmpleadoId");
+
+            entity.HasIndex(e => e.FondoPensionId, "FondoPensionId");
+
+            entity.HasIndex(e => e.ServicioId, "ServicioId");
+
+            entity.HasIndex(e => e.TipoContratoId, "TipoContratoId");
+
             entity.Property(e => e.Id).HasColumnType("int(11)");
             entity.Property(e => e.Arlid)
                 .HasColumnType("int(11)")
@@ -88,6 +102,41 @@ public partial class SgeAdminContext : DbContext
             entity.Property(e => e.ServicioId).HasColumnType("int(11)");
             entity.Property(e => e.SoportesRef).HasMaxLength(255);
             entity.Property(e => e.TipoContratoId).HasColumnType("int(11)");
+
+            entity.HasOne(d => d.Arl).WithMany(p => p.ContratosLaborales)
+                .HasForeignKey(d => d.Arlid)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ContratosLaborales_ARL");
+
+            entity.HasOne(d => d.Cargo).WithMany(p => p.ContratosLaborales)
+                .HasForeignKey(d => d.CargoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ContratosLaborales_Cargos");
+
+            entity.HasOne(d => d.Empleado).WithMany(p => p.ContratosLaborales)
+                .HasForeignKey(d => d.EmpleadoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ContratosLaborales_Empleados");
+
+            entity.HasOne(d => d.Eps).WithMany(p => p.ContratosLaborales)
+                .HasForeignKey(d => d.Epsid)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ContratosLaborales_EPS");
+
+            entity.HasOne(d => d.FondoPension).WithMany(p => p.ContratosLaborales)
+                .HasForeignKey(d => d.FondoPensionId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ContratosLaborales_FondosPensiones");
+
+            entity.HasOne(d => d.Servicio).WithMany(p => p.ContratosLaborales)
+                .HasForeignKey(d => d.ServicioId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ContratosLaborales_Servicios");
+
+            entity.HasOne(d => d.TipoContrato).WithMany(p => p.ContratosLaborales)
+                .HasForeignKey(d => d.TipoContratoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ContratosLaborales_TiposContratos");
         });
 
         modelBuilder.Entity<Empleado>(entity =>
@@ -146,11 +195,12 @@ public partial class SgeAdminContext : DbContext
             entity.ToTable("FileRecord");
 
             entity.Property(e => e.Id).HasColumnType("int(11)");
-            entity.Property(e => e.ContentType)
-                .IsRequired()
-                .HasMaxLength(255);
+            entity.Property(e => e.ContentType).HasColumnType("int(11)");
             entity.Property(e => e.File).HasColumnType("blob");
             entity.Property(e => e.Guid)
+                .IsRequired()
+                .HasMaxLength(255);
+            entity.Property(e => e.IdentificadorEmpleado)
                 .IsRequired()
                 .HasMaxLength(255);
             entity.Property(e => e.Nombre)
@@ -175,6 +225,8 @@ public partial class SgeAdminContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
+            entity.HasIndex(e => e.Cecoid, "CECOId");
+
             entity.Property(e => e.Id).HasColumnType("int(11)");
             entity.Property(e => e.Cecoid)
                 .HasColumnType("int(11)")
@@ -182,6 +234,11 @@ public partial class SgeAdminContext : DbContext
             entity.Property(e => e.Nombre)
                 .IsRequired()
                 .HasMaxLength(255);
+
+            entity.HasOne(d => d.Ceco).WithMany(p => p.Servicios)
+                .HasForeignKey(d => d.Cecoid)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Servicios_CECO");
         });
 
         modelBuilder.Entity<TiposContrato>(entity =>

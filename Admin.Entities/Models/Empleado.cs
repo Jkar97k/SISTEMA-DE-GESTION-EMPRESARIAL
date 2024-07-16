@@ -36,4 +36,6 @@ public partial class Empleado
     public DateTime ModifiedDate { get; set; }
 
     public bool Status { get; set; }
+
+    public virtual ICollection<ContratosLaborale> ContratosLaborales { get; set; } = new List<ContratosLaborale>();
 }

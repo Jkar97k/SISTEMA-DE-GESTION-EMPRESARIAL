@@ -10,11 +10,12 @@ namespace Admin.DTO
     {
         public int Id { get; set; }
 
+        public string IdentificadorEmpleado { get; set; }
+
         public string Nombre { get; set; }
 
-        public string ContentType { get; set; }
+        public int ContentType { get; set; }
 
-        public byte[] File { get; set; }
 
         public string Ruta { get; set; }
 

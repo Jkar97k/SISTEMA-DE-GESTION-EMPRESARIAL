@@ -15,5 +15,6 @@ namespace Admin.DTO
         public string ContentType { get; set; }
 
         public string Guid { get; set; }
+
     }
 }

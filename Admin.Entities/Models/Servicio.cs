@@ -10,4 +10,8 @@ public partial class Servicio
     public string Nombre { get; set; }
 
     public int Cecoid { get; set; }
+
+    public virtual Ceco Ceco { get; set; }
+
+    public virtual ICollection<ContratosLaborale> ContratosLaborales { get; set; } = new List<ContratosLaborale>();
 }
