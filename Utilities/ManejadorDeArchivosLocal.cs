@@ -1,4 +1,5 @@
 ﻿using Admin.DTO;
+using Admin.Interfaces;
 using Admin.Interfaces.Utilidades;
 using Microsoft.AspNetCore.Hosting;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Utilities
 {
-    public class ManejadorDeArchivosLocal : IManejadorArchivos
+    public class ManejadorDeArchivosLocal : IManejadorDeArchivosLocal
     {
         private readonly string _carpetaBase;
 
@@ -18,7 +19,7 @@ namespace Utilities
             _carpetaBase = env.WebRootPath;
         }
 
-        public async Task<CreateFileRecordDTO> GuardarArchivo(byte[] contenido, string nombreArchivo, string contentType, string bucket)
+        public CreateFileRecordDTO GuardarArchivo(string nombreArchivo, string bucket, string idenficadorEmpleado, int contentTypeuser)
         {
             var carpetaDestino = Path.Combine(_carpetaBase, bucket);
 
@@ -32,17 +33,22 @@ namespace Utilities
             var nombreArchivoConGuid = guid + extension;
             var rutaArchivo = Path.Combine(carpetaDestino, nombreArchivoConGuid);
 
-            await File.WriteAllBytesAsync(rutaArchivo, contenido);
-
             var fileRecord = new CreateFileRecordDTO
             {
+                IdentificadorEmpleado = idenficadorEmpleado,
                 Nombre = nombreArchivoConGuid,
-                ContentType = contentType,
-                Bucket = bucket,
+                ContentType = contentTypeuser,
+                Ruta = rutaArchivo,
                 Guid = guid
             };
 
             return fileRecord;
+        }
+
+
+        public async Task GuardarFile(string rutaArchivo, byte[] contenido)
+        {
+            await File.WriteAllBytesAsync(rutaArchivo, contenido);
         }
 
         public async Task<byte[]> ObtenerArchivo(string bucket, string nombreArchivo)
@@ -60,6 +66,25 @@ namespace Utilities
         {
             var carpeta = Path.Combine(_carpetaBase, bucket);
             return Path.Combine(carpeta, nombreArhivo);
+        }
+
+        public void DeleteFile(string rutaArchivoCompleta)
+        {
+            try
+            {
+                if (System.IO.File.Exists(rutaArchivoCompleta))
+                {
+                    System.IO.File.Delete(rutaArchivoCompleta);
+                }
+                else
+                {
+                    throw new FileNotFoundException($"El archivo no existe en la ruta especificada: {rutaArchivoCompleta}");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al eliminar el archivo '{rutaArchivoCompleta}': {ex.Message}");
+            }
         }
     }
 }

@@ -82,5 +82,44 @@ namespace Admin.Services
             }
             return result;
         }
+
+        public async Task UpdateEmpleado(RequestEmpleado request)
+        {
+            using (var transaction = _unitOfWork.BeginTransaction())
+            {
+                try
+                {
+                    var data = await _unitOfWork.EmpleadosRepository.GetOne(x => x.NumeroDocumento == request.EmpleadoDT.NumeroDocumento);
+                    if (data != null)
+                    {
+                        return;
+                    }
+                    var empleadoDT = _mapper.Map(request.EmpleadoDT, data);
+                    empleadoDT.ModifiedBy = "JKAr";
+                    empleadoDT.ModifiedDate = DateTime.Now;
+                    empleadoDT.Status = true;
+                    _unitOfWork.EmpleadosRepository.UpdateAsync(empleadoDT);
+                    await _unitOfWork.SaveChanges();
+
+                    var dataC = await _unitOfWork.ContratosLaboraleRepository.GetOne(x => x.EmpleadoId == request.EmpleadoDT.Id);
+                    if (dataC != null)
+                    {
+                        return;
+                    }
+                    var contrato = _mapper.Map(request.ContratosLaborales, dataC);
+                    contrato.EmpleadoId = empleadoDT.Id;
+                    _unitOfWork.ContratosLaboraleRepository.UpdateAsync(contrato);
+                    await _unitOfWork.SaveChanges();
+
+                    //ActivarEmpleado(request);
+
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                }
+            }
+        }
     }
 }

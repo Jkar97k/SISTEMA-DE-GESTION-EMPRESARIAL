@@ -32,8 +32,13 @@ namespace Admin.api.Controllers.Maestros
         public async Task<IActionResult> Create(RequestCreateEmpleado dtos)
         {
              await _empleadosService.CreateEmpleado(dtos);
+            return Ok();
+        }
 
-            //_logger.LogInformation();
+        [HttpPost("Update")]
+        public async Task<IActionResult> Update(RequestEmpleado dtos)
+        {
+            await _empleadosService.UpdateEmpleado(dtos);
             return Ok();
         }
     }

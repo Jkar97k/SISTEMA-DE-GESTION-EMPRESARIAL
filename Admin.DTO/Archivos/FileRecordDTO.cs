@@ -16,6 +16,7 @@ namespace Admin.DTO
 
         public int ContentType { get; set; }
 
+        public byte[] File { get; set; }
 
         public string Ruta { get; set; }
 

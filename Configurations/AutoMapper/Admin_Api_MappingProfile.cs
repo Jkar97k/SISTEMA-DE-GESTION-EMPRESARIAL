@@ -33,6 +33,8 @@ namespace Configurations.AutoMapper
             CreateMap<Servicio,CreateServicioDTO>().ReverseMap();
             CreateMap<TiposContrato,GenericDTO>().ReverseMap();
             CreateMap<TiposContrato,CreateGenericDTO>().ReverseMap();
+            CreateMap<FileRecord,FileRecordDTO>().ReverseMap();
+            CreateMap<FileRecord,CreateFileRecordDTO>().ReverseMap();
         }
     }
 }

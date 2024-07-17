@@ -37,13 +37,13 @@ namespace Admin.Services
                     return;
                 }
                 var entity = _mapper.Map<Cargo>(dto);
-                _unitOfWork.CargoRepository.Add(entity);
+                await _unitOfWork.CargoRepository.Add(entity);
                 await _unitOfWork.SaveChanges();
                 _logger.LogInformation("Se a Creado con Exito El Cargo");
             } 
             catch (Exception ex) 
             {
-                _logger.LogError(message: "Error al ejecutar ", args: ex);
+                _logger.LogError("Error al ejecutar ");
             }
 
         }

@@ -6,5 +6,6 @@ namespace Admin.Services
     {
         Task CreateEmpleado(RequestCreateEmpleado request);
         Task<List<RequestEmpleado>> GetToAll();
+        Task UpdateEmpleado(RequestEmpleado request);
     }
 }

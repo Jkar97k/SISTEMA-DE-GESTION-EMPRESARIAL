@@ -27,6 +27,7 @@ namespace IoC.Api.Admin
             builder.Services.AddScoped<IFondosPensionRepository, FondosPensionRepository>();
             builder.Services.AddScoped<IServicioRepository, ServicioRepository>();
             builder.Services.AddScoped<ITipoContratoRepository, TiposContratoRepository>();
+            builder.Services.AddScoped<IFileRecordRepository, FileRecordRepository>();
         }
         public static void ReglasNegocioService(WebApplicationBuilder builder)
         {
@@ -38,6 +39,7 @@ namespace IoC.Api.Admin
             builder.Services.AddScoped<IFondosPensionService, FondosPensionService>();
             builder.Services.AddScoped<IServicioService, ServicioService>();
             builder.Services.AddScoped<ITipoContratoRepository, TiposContratoRepository>();
+            builder.Services.AddScoped<IFileRecordService, FileRecordService>();
         }
 
         public static void ValidacionesService(WebApplicationBuilder builder)
@@ -47,7 +49,7 @@ namespace IoC.Api.Admin
 
         public static void UtilidadesService(WebApplicationBuilder builder)
         {
-            builder.Services.AddScoped<IManejadorArchivos, ManejadorDeArchivosLocal>();
+            builder.Services.AddScoped<IManejadorDeArchivosLocal, ManejadorDeArchivosLocal>();
         }
 
     }

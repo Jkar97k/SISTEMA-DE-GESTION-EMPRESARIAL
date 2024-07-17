@@ -1,39 +1,43 @@
-﻿using Admin.Interfaces.Utilidades;
+﻿using Admin.Interfaces;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySqlX.XDevAPI;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Admin.api.Controllers.Achivos
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class FileRecorController : ControllerBase
     {
-        private readonly IManejadorArchivos _manejadorArchivos;
+        private readonly IManejadorDeArchivosLocal _manejadorArchivos;
+        private readonly IFileRecordService _fileRecordService;
 
-        public ValuesController(IManejadorArchivos manejadorArchivos)
+        public FileRecorController(IManejadorDeArchivosLocal manejadorArchivos, IFileRecordService fileRecordService)
         {
             _manejadorArchivos = manejadorArchivos;
+            _fileRecordService = fileRecordService; 
         }
 
         [HttpPost("subir")]
-        public async Task<IActionResult> SubirArchivo(IFormFile archivo)
+        public async Task<IActionResult> UploadFileEmpleado(string idenficadorEmpleado, int contentType, IFormFile file)
         {
-            if (archivo == null || archivo.Length == 0)
+            if (file == null || file.Length == 0)
             {
                 return BadRequest("No se ha proporcionado un archivo válido.");
             }
 
             using var ms = new MemoryStream();
-            await archivo.CopyToAsync(ms);
+            await file.CopyToAsync(ms);
             var contenido = ms.ToArray();
 
-            var guid = await _manejadorArchivos.GuardarArchivo(contenido, archivo.FileName, archivo.ContentType, "documentos");
-
-            return Ok(new { Guid = guid });
+            var filedto =  _manejadorArchivos.GuardarArchivo( file.FileName,  "documentos" , idenficadorEmpleado, contentType);
+            await _fileRecordService.UploadFile(filedto);
+            await _manejadorArchivos.GuardarFile(filedto.Ruta, contenido);
+            return Ok(new { filedto.Guid });
         }
 
         [HttpGet("ObtenerArchivoBase64/{ruta}")]
