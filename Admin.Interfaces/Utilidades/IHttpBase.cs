@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Admin.Interfaces.Utilidades
+namespace Admin.Interfaces
 {
     public interface IHttpBase
     {

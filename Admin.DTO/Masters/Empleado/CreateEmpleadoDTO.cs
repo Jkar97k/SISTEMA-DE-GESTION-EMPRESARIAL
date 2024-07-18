@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Admin.DTO
 {
     public record CreateEmpleadoDTO(
+        int id,
         int TipoDocumento,
         string NumeroDocumento,
         string Nombres,

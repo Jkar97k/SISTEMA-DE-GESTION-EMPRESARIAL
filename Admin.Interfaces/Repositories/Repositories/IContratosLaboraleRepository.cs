@@ -10,5 +10,6 @@ namespace Admin.Interfaces
 {
     public interface IContratosLaboraleRepository : IRepository<ContratosLaborale>
     {
+        Task ActualizarRefContrato(int contentType, string nombre, string documento);
     }
 }

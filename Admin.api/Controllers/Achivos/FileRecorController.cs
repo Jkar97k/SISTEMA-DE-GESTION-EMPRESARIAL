@@ -35,18 +35,17 @@ namespace Admin.api.Controllers.Achivos
             var contenido = ms.ToArray();
 
             var filedto =  _manejadorArchivos.GuardarArchivo( file.FileName,  "documentos" , idenficadorEmpleado, contentType);
-            await _fileRecordService.UploadFile(filedto);
-            await _manejadorArchivos.GuardarFile(filedto.Ruta, contenido);
-            return Ok(new { filedto.Guid });
+            await _fileRecordService.UploadFile(filedto, contenido);
+            return Ok(StatusCode(200,"Archivos cargados"));
         }
 
-        [HttpGet("ObtenerArchivoBase64/{ruta}")]
+        //[HttpGet("ObtenerArchivoBase64/{ruta}")]
 
-        public async Task<IActionResult> GetArchivoBase64(string ruta)
-        {
-            var base64 = await _manejadorArchivos.ObtenerArchivoEnBase64(ruta, "documentos");
-            return Ok(new { base64 });
-        }
+        //public async Task<IActionResult> GetArchivoBase64(string ruta)
+        //{
+        //    var base64 = await _manejadorArchivos.ObtenerArchivoEnBase64(ruta, "documentos");
+        //    return Ok(new { base64 });
+        //}
 
         //[HttpPost("upload")]
         //public async Task<IActionResult> Upload(IFormFile file)

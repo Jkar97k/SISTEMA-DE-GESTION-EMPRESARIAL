@@ -1,4 +1,5 @@
 ﻿using Admin.DTO;
+using Admin.DTO.utilities;
 using Admin.Entities.Models;
 using Admin.Interfaces;
 using AutoMapper;
@@ -14,11 +15,13 @@ namespace Admin.Services
     {
         private readonly IMapper _mapper;
         private readonly IUnitofWork _unitOfWork;
+        private readonly IAuthService _authService;
 
-        public EmpleadoService(IMapper mapper, IUnitofWork unitofWork)
+        public EmpleadoService(IMapper mapper, IUnitofWork unitofWork, IAuthService authService)
         {
             _mapper = mapper;
             _unitOfWork = unitofWork;
+            _authService = authService;
         }
         public async Task CreateEmpleado(RequestCreateEmpleado request)
         {
@@ -45,7 +48,14 @@ namespace Admin.Services
                     await _unitOfWork.ContratosLaboraleRepository.Add(contrato);
                     await _unitOfWork.SaveChanges();
 
-                    //ActivarEmpleado(request);
+                    var responseAuth = new RequestActivarEmpleado
+                    (
+                      request.Empleado.NumeroDocumento,
+                       request.Empleado.CorreoPersonal,
+                      request.ContratosLaborale.CargoId
+                    );
+
+                    await ActivarEmpleado(responseAuth);
 
                     transaction.Commit();
                 }
@@ -97,7 +107,6 @@ namespace Admin.Services
                     var empleadoDT = _mapper.Map(request.EmpleadoDT, data);
                     empleadoDT.ModifiedBy = "JKAr";
                     empleadoDT.ModifiedDate = DateTime.Now;
-                    empleadoDT.Status = true;
                     _unitOfWork.EmpleadosRepository.UpdateAsync(empleadoDT);
                     await _unitOfWork.SaveChanges();
 
@@ -111,7 +120,16 @@ namespace Admin.Services
                     _unitOfWork.ContratosLaboraleRepository.UpdateAsync(contrato);
                     await _unitOfWork.SaveChanges();
 
-                    //ActivarEmpleado(request);
+                    if (empleadoDT.Status == false)
+                    {
+                        var reponseAuth = new RequestDesactivarEmpleado(
+                            request.EmpleadoDT.NumeroDocumento,
+                            DateTime.Now
+                            );
+
+                        await DarBajaEmpleado(reponseAuth);
+                    }
+
 
                     transaction.Commit();
                 }
@@ -120,6 +138,15 @@ namespace Admin.Services
                     transaction.Rollback();
                 }
             }
+        }
+
+        public async Task ActivarEmpleado(RequestActivarEmpleado request) 
+        {
+            await _authService.ActivarEmpleado(request);
+        }
+        public async Task DarBajaEmpleado(RequestDesactivarEmpleado request) 
+        {
+            await _authService.DarBajaEmpleado(request);
         }
     }
 }

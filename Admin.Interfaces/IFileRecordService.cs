@@ -4,6 +4,6 @@ namespace Admin.Interfaces
 {
     public interface IFileRecordService
     {
-        Task UploadFile(CreateFileRecordDTO dto);
+        Task UploadFile(CreateFileRecordDTO dto, byte[] content);
     }
 }
