@@ -1,7 +1,7 @@
 ﻿
 using Admin.DTO;
 using Admin.DTO.utilities;
-using Admin.Interfaces;
+using Admin.Interfaces.ServiceCall;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -8,6 +8,8 @@ using Admin.Repositories.Repositories.Maestros;
 using Admin.Services;
 using Utilities;
 using Admin.Repositories;
+using Auth.Interfaces;
+using Auth.Repository;
 
 namespace IoC
 {
@@ -15,11 +17,11 @@ namespace IoC
     {
         public static void RepositoryService(WebApplicationBuilder builder)
         {
-
+           builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         }
         public static void ReglasNegocioService(WebApplicationBuilder builder)
         {
-
+           // builder.Services.AddScoped<IArlService, ArlService>();
         }
 
         public static void ValidacionesService(WebApplicationBuilder builder)

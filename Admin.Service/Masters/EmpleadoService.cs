@@ -2,6 +2,7 @@
 using Admin.DTO.utilities;
 using Admin.Entities.Models;
 using Admin.Interfaces;
+using Admin.Interfaces.ServiceCall;
 using AutoMapper;
 using System;
 using System.Collections.Generic;

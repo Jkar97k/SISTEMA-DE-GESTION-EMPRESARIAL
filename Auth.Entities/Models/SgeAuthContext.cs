@@ -30,7 +30,7 @@ public partial class SgeAuthContext : DbContext
                 .HasDefaultValueSql("'0'")
                 .HasColumnType("datetime");
             entity.Property(e => e.NumeroDocumento).HasMaxLength(50);
-            entity.Property(e => e.Role).HasMaxLength(50);
+            entity.Property(e => e.Role).HasColumnType("int(50)");
         });
 
         OnModelCreatingPartial(modelBuilder);

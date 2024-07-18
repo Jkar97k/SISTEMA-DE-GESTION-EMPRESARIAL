@@ -24,19 +24,26 @@ namespace Admin.Repositories
 
         public async Task ActualizarRefContrato(int contentType, string nombre, string documento)
         {
-
             string column = contentType == 1 ? "HojaVidaRef" : "SoportesRef";
 
-            string sql = $@"
-            UPDATE ContratosLaborales C
-            INNER JOIN Empleados E ON E.Id = C.EmpleadoId
-            SET C.{column} = @nombre
-            WHERE E.NumeroDocumento LIKE CONCAT(@documento, '%')";
+            var contratosLaborales = _context.ContratosLaborales
+                .Include(c => c.Empleado)
+                .Where(c => c.Empleado.NumeroDocumento.StartsWith(documento));
 
-            var nombreParam = new MySqlParameter("@nombre", nombre);
-            var documentoParam = new MySqlParameter("@documento", documento);
+            foreach (var contrato in contratosLaborales)
+            {
+                if (column == "HojaVidaRef")
+                {
+                    contrato.HojaVidaRef = nombre;
+                }
+                else if (column == "SoportesRef")
+                {
+                    contrato.SoportesRef = nombre;
+                }
+            }
 
-            await _context.Database.ExecuteSqlRawAsync(sql, nombreParam, documentoParam);
+            await _context.SaveChangesAsync();
         }
+
     }
 }

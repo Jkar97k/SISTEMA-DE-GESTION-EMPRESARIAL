@@ -7,6 +7,7 @@ using Admin.Repositories.Repositories.Maestros;
 using Admin.Services;
 using Utilities;
 using Admin.Repositories;
+using Admin.Interfaces.ServiceCall;
 
 namespace IoC.Api.Admin
 {
@@ -49,6 +50,15 @@ namespace IoC.Api.Admin
         {
             builder.Services.AddScoped<IManejadorDeArchivosLocal, ManejadorDeArchivosLocal>();
         }
+
+        public static void HttpClientService(WebApplicationBuilder builder)
+        {
+            builder.Services.AddHttpClient<IAuthService, IAuthService>(service =>
+            {
+                service.BaseAddress = new Uri(builder.Configuration.GetSection("ApiProject").Value);
+            });
+        }
+
 
     }
 }

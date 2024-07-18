@@ -25,6 +25,8 @@ Admin_BusinessLogicIoC.ValidacionesService(builder);
 
 Admin_BusinessLogicIoC.UtilidadesService(builder);
 
+Admin_BusinessLogicIoC.HttpClientService(builder);
+
 
 
 // Add services to the container.

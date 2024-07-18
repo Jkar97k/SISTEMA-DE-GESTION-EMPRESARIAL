@@ -1,7 +1,7 @@
 ﻿using Admin.DTO;
 using Admin.DTO.utilities;
 
-namespace Admin.Interfaces
+namespace Admin.Interfaces.ServiceCall
 {
     public interface IAuthService
     {
