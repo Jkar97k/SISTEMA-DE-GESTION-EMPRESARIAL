@@ -1,8 +1,32 @@
+using Configurations.serilog;
+using IoC;
+using IoC.Global;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+SerilogIoc.ConfigLogSeq(builder);
 
-builder.Services.AddControllers();
+Auth_DataBaseIoC.ConfigureMySQLService(builder);
+
+Auth_AutoMapperIoC.ConfigureService(builder);
+
+Auth_BusinessLogicIoC.RepositoryService(builder);
+
+Auth_BusinessLogicIoC.ReglasNegocioService(builder);
+
+Auth_BusinessLogicIoC.ValidacionesService(builder);
+
+Auth_BusinessLogicIoC.UtilidadesService(builder);
+
+
+
+// Add services to the container.
+builder.Services.AddControllers(config =>
+{
+    config.Filters.Add<GlobalLoggingFilterController>();
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -4,6 +4,7 @@ using Admin.Repositories.Base;
 using Admin.Repositories.Repositories;
 using Admin.Services.Masters;
 using Configurations.serilog;
+using IoC;
 using IoC.Api.Admin;
 using IoC.Global;
 using Microsoft.EntityFrameworkCore;

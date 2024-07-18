@@ -1,7 +1,6 @@
 ﻿
 using Admin.Interfaces;
 using Admin.Repositories.Base;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Admin.Repositories.Repositories.Maestros;

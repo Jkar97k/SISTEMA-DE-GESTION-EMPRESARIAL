@@ -1,5 +1,5 @@
-﻿using Admin.Entities.Models;
-using Admin.Interfaces;
+﻿using Auth.Interfaces;
+using Auth.Entities.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,16 +9,16 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Admin.Repositories.Base
+namespace Auth.Repositories
 {
 #nullable enable
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly SgeAdminContext _context;
+        private readonly SgeAuthContext _context;
         private readonly DbSet<T> _dbSet;
         protected readonly IMapper _mapper;
 
-        public Repository(SgeAdminContext context, IMapper mapper)
+        public Repository(SgeAuthContext context, IMapper mapper)
         {
             _context = context;
             _dbSet = context.Set<T>();
