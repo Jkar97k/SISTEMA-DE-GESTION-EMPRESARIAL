@@ -1,6 +1,4 @@
-﻿using Admin.DTO;
-using Admin.DTO.utilities;
-
+﻿using DTO;
 namespace Admin.Interfaces
 {
     public interface IEmpleadoService

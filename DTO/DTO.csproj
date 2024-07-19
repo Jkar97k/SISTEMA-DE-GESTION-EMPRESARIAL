@@ -7,14 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Admin.DTO\Admin.DTO.csproj" />
-    <ProjectReference Include="..\Admin.Entities\Admin.Entities.csproj" />
-    <ProjectReference Include="..\DTO\DTO.csproj" />
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
+    <ProjectReference Include="..\Auth.DTO\Auth.DTO.csproj" />
   </ItemGroup>
 
 </Project>

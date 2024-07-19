@@ -17,7 +17,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
     <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="6.6.1" />
   </ItemGroup>
-
+	<ItemGroup>
+	    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Admin.DTO\Admin.DTO.csproj" />
     <ProjectReference Include="..\Admin.Events\Admin.Events.csproj" />
@@ -31,6 +33,7 @@
     <ProjectReference Include="..\Auth.Service\Auth.Service.csproj" />
     <ProjectReference Include="..\Auth.Validations\Auth.Validations.csproj" />
     <ProjectReference Include="..\Configurations\Configurations.csproj" />
+    <ProjectReference Include="..\ServiceCall\ServiceCall.csproj" />
     <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>
 

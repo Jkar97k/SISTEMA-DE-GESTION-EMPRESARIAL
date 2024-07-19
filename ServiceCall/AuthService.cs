@@ -1,12 +1,5 @@
-﻿
-using Admin.DTO;
-using Admin.DTO.utilities;
-using Admin.Interfaces.ServiceCall;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Admin.Interfaces.ServiceCall;
+using DTO;
 using Utilities;
 
 namespace ServiceCall

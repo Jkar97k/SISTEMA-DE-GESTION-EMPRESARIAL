@@ -8,11 +8,14 @@ using Admin.Services;
 using Utilities;
 using Admin.Repositories;
 using Admin.Interfaces.ServiceCall;
+using Interfaces;
+using ServiceCall;
 
-namespace IoC.Api.Admin
+namespace IoC
 {
-    public class Admin_BusinessLogicIoC
+    public class Admin_BusinessLogicIoC : ConfigApi
     {
+        //builder.Services.AddScoped(typeof(IRepository<SgeAdminContext>), typeof(Repository<SgeAdminContext>));
         public static void RepositoryService(WebApplicationBuilder builder)
         {
             builder.Services.AddScoped<IUnitofWork, UnitofWork>();
@@ -46,19 +49,26 @@ namespace IoC.Api.Admin
 
         }
 
-        public static void UtilidadesService(WebApplicationBuilder builder)
-        {
-            builder.Services.AddScoped<IManejadorDeArchivosLocal, ManejadorDeArchivosLocal>();
-        }
-
         public static void HttpClientService(WebApplicationBuilder builder)
         {
-            builder.Services.AddHttpClient<IAuthService, IAuthService>(service =>
+            builder.Services.AddHttpClient<IAuthService, AuthService>(service =>
             {
                 service.BaseAddress = new Uri(builder.Configuration.GetSection("ApiProject").Value);
             });
         }
 
+        public static void CargaBuilder(WebApplicationBuilder builder) 
+        {
+            RepositoryService(builder);
+            ReglasNegocioService(builder);
+            HttpClientService(builder);
+            ConfigBuilderServices(builder);
+        }
+
+        public static void CargaApp(WebApplication app) 
+        {
+            ConfigureApi(app);
+        }
 
     }
 }

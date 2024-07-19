@@ -1,4 +1,5 @@
 ﻿using Admin.Entities.Models;
+using IoC.Global;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,24 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IoC.Api.Admin
+namespace IoC
 {
-    public class Admin_DataBaseIoC
+    public class Admin_DataBaseIoC : DataBaseConect<SgeAdminContext>
     {
-        public static void ConfigureSQLService(WebApplicationBuilder builder)
-        {
-            builder.Services.AddDbContext<SgeAdminContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-            });
-        }
-        public static void ConfigureMySQLService(WebApplicationBuilder builder)
-        {
-            builder.Services.AddDbContext<SgeAdminContext>(
-                (DbContextOptionsBuilder options) =>
-                {
-                    options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection"));
-                });
-        }
     }
 }

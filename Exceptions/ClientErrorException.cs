@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Admin.Exceptions
+namespace Exceptions
 {
-    public class EmpleadoErrorException : Exception
+    public class ClientErrorException : Exception
     {
-        public EmpleadoErrorException(string message) : base(message)
+        public ClientErrorException(string message) : base(message)
         {
         }
     }

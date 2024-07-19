@@ -1,6 +1,5 @@
-﻿using Admin.DTO;
-using Admin.Interfaces;
-using Admin.Services;
+﻿using Admin.Interfaces;
+using DTO;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

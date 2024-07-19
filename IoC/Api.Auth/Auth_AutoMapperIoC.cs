@@ -9,11 +9,7 @@ using System.Threading.Tasks;
 
 namespace IoC
 {
-    public class Auth_AutoMapperIoC
+    public class Auth_AutoMapperIoC: AutoMapper<Auth_Api_MappinProfile>
     {
-        public static void ConfigureService(WebApplicationBuilder builder)
-        {
-            builder.Services.AddAutoMapper(typeof(Auth_Api_MappinProfile));
-        }
     }
 }

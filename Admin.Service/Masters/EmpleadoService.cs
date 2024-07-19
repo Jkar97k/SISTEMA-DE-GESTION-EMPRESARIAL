@@ -1,14 +1,9 @@
 ﻿using Admin.DTO;
-using Admin.DTO.utilities;
 using Admin.Entities.Models;
 using Admin.Interfaces;
 using Admin.Interfaces.ServiceCall;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DTO;
 
 namespace Admin.Services
 {

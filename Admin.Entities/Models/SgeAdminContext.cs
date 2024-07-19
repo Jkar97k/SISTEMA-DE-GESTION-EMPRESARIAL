@@ -4,11 +4,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Admin.Entities.Models;
 
-public partial class SgeAdminContext : DbContext
+public partial class SgeAdminContext : DbContext 
 {
     public SgeAdminContext(DbContextOptions<SgeAdminContext> options)
         : base(options)
     {
+    }
+    public new DbSet<T> Set<T>() where T : class
+    {
+        return base.Set<T>();
     }
 
     public virtual DbSet<Arl> Arls { get; set; }
