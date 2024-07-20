@@ -19,7 +19,6 @@ namespace IoC
         public static void RepositoryService(WebApplicationBuilder builder)
         {
             builder.Services.AddScoped<IUnitofWork, UnitofWork>();
-            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddScoped<IArlRepository, ArlRepository>();
             builder.Services.AddScoped<ICargoRepository, CargoRepository>();
             builder.Services.AddScoped<ICecoRepository, CecoRepository>();
@@ -60,6 +59,7 @@ namespace IoC
         public static void CargaBuilder(WebApplicationBuilder builder) 
         {
             RepositoryService(builder);
+            UtilidadesServices(builder);
             ReglasNegocioService(builder);
             HttpClientService(builder);
             ConfigBuilderServices(builder);

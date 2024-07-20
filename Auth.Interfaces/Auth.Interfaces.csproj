@@ -13,10 +13,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Auth.DTO\Auth.DTO.csproj" />
     <ProjectReference Include="..\Auth.Entities\Auth.Entities.csproj" />
-  </ItemGroup>
-	
-  <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
+	  <ProjectReference Include="..\DTO\DTO.csproj" />
   </ItemGroup>
 
 </Project>

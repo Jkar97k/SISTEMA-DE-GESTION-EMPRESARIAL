@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Admin.Entities.Models;
 

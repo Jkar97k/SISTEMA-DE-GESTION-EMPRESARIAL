@@ -5,7 +5,7 @@ using AutoMapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
-using System;
+using Repository;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Admin.Repositories
 {
-    public class ContratosLaboraleRepository : Repository<ContratosLaborale>, IContratosLaboraleRepository
+    public class ContratosLaboraleRepository : Repository<ContratosLaborale ,SgeAdminContext>, IContratosLaboraleRepository
     {
         private readonly SgeAdminContext _context;
 

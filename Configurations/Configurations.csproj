@@ -27,6 +27,7 @@
     <ProjectReference Include="..\Admin.Interfaces\Admin.Interfaces.csproj" />
     <ProjectReference Include="..\Admin.Repositories\Admin.Repositories.csproj" />
     <ProjectReference Include="..\Admin.Service\Admin.Services.csproj" />
+    <ProjectReference Include="..\Auth.Entities\Auth.Entities.csproj" />
   </ItemGroup>
 
 </Project>

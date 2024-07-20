@@ -4,9 +4,9 @@ using Auth.Repository;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace Auth.Repositories.Base
+namespace Auth.Repository
 {
-    public class UnitofWork 
+    public class UnitofWork : IUnitofWork
     {
         private readonly SgeAuthContext _context;
         private readonly IMapper _mapper;
@@ -20,7 +20,7 @@ namespace Auth.Repositories.Base
         }
 
         public IUsuarioRepository UsuarioRepository => _usuarioRepository ??= new UsuarioRepository(_context, _mapper);
-        
+
 
         public async Task SaveChanges()
         {

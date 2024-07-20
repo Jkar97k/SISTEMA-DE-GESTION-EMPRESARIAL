@@ -14,6 +14,7 @@
     <ProjectReference Include="..\Admin.Entities\Admin.Entities.csproj" />
     <ProjectReference Include="..\Admin.Interfaces\Admin.Interfaces.csproj" />
     <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
+    <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>
 
 </Project>

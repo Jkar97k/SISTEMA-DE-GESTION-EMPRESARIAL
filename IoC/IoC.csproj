@@ -33,6 +33,7 @@
     <ProjectReference Include="..\Auth.Service\Auth.Service.csproj" />
     <ProjectReference Include="..\Auth.Validations\Auth.Validations.csproj" />
     <ProjectReference Include="..\Configurations\Configurations.csproj" />
+    <ProjectReference Include="..\Repository\Repository.csproj" />
     <ProjectReference Include="..\ServiceCall\ServiceCall.csproj" />
     <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>

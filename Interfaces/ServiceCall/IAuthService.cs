@@ -1,10 +1,11 @@
 ﻿using DTO;
+using System.Net;
 
 namespace Admin.Interfaces.ServiceCall
 {
     public interface IAuthService
     {
-        Task<BaseResponse<bool>> ActivarEmpleado(RequestActivarEmpleado request);
-        Task<BaseResponse<bool>> DarBajaEmpleado(RequestDesactivarEmpleado request);
+        Task<BaseResponse<HttpStatusCode>> ActivarEmpleado(RequestActivarEmpleado request);
+        Task<BaseResponse<HttpStatusCode>> DarBajaEmpleado(RequestDesactivarEmpleado request);
     }
 }

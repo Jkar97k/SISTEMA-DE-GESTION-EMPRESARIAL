@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Admin.Interfaces
 {
-    public interface IEpRepository : IRepository<Ep>
+    public interface IEpRepository : IRepository<Ep, SgeAdminContext>
     {
     }
 }

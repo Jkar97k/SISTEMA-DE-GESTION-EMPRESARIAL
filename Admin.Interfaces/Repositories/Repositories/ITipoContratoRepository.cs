@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Admin.Interfaces
 {
-    public interface ITipoContratoRepository : IRepository<TiposContrato>
+    public interface ITipoContratoRepository : IRepository<TiposContrato, SgeAdminContext>
     {
     }
 }

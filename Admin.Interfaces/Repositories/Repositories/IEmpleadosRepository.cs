@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Admin.Interfaces
 {
-    public interface IEmpleadosRepository : IRepository<Empleado>
+    public interface IEmpleadosRepository : IRepository<Empleado, SgeAdminContext>
     {
     }
 }

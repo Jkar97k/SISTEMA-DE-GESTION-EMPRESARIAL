@@ -1,9 +1,10 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Interfaces
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T,Tcontext> where T : class where Tcontext : DbContext
     {
         Task Add(T entity);
         void DeleteAsync(T entity);

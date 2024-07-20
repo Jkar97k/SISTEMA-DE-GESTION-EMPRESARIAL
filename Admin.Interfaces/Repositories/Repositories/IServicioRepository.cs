@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Admin.Interfaces
 {
-    public interface IServicioRepository : IRepository<Servicio>
+    public interface IServicioRepository : IRepository<Servicio, SgeAdminContext>
     {
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Admin.Interfaces.ServiceCall;
 using DTO;
+using Microsoft.AspNetCore.Http;
+using System.Net;
 using Utilities;
 
 namespace ServiceCall
@@ -9,14 +11,14 @@ namespace ServiceCall
         public AuthService(HttpClient client) : base(client) { }
 
 
-        public async Task<BaseResponse<bool>> ActivarEmpleado(RequestActivarEmpleado request)
+        public async Task<BaseResponse<HttpStatusCode>> ActivarEmpleado(RequestActivarEmpleado request)
         {
-            return await Post<bool, RequestActivarEmpleado>("", request);
+            return await Post<HttpStatusCode, RequestActivarEmpleado>("", request);
         }
 
-        public async Task<BaseResponse<bool>> DarBajaEmpleado(RequestDesactivarEmpleado request)
+        public async Task<BaseResponse<HttpStatusCode>> DarBajaEmpleado(RequestDesactivarEmpleado request)
         {
-            return await Post<bool, RequestDesactivarEmpleado>("", request);
+            return await Post<HttpStatusCode, RequestDesactivarEmpleado>("", request);
         }
     }
 }

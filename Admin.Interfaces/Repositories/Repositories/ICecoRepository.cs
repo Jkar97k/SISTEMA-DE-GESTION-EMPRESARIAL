@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Admin.Interfaces
 {
-    public interface ICecoRepository : IRepository<Ceco>
+    public interface ICecoRepository : IRepository<Ceco, SgeAdminContext>
     {
     }
 }

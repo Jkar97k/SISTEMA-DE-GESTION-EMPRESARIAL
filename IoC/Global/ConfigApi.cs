@@ -1,9 +1,13 @@
-﻿using Interfaces;
-using Configurations.serilog;
+﻿using Configurations.serilog;
+using Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Utilities;
+using Repository;
+using Auth.Interfaces;
+using Auth.Repository;
+
 
 namespace IoC
 {
@@ -11,6 +15,9 @@ namespace IoC
     {
         public  static void ConfigBuilderServices(WebApplicationBuilder builder) 
         {
+            builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
+            //builder.Services.AddScoped<IRepository, Repository>();
+
 
             builder.Services.AddControllers(config =>
             {

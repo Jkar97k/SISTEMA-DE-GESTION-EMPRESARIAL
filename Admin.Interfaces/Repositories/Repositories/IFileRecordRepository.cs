@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Admin.Interfaces
 {
-    public interface IFileRecordRepository : IRepository<FileRecord>
+    public interface IFileRecordRepository : IRepository<FileRecord, SgeAdminContext>
     {
     }
 }

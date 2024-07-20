@@ -3,7 +3,7 @@ using Interfaces;
 
 namespace Admin.Interfaces
 {
-    public interface IArlRepository : IRepository<Arl>
+    public interface IArlRepository : IRepository<Arl,SgeAdminContext>
     {
     }
 }
