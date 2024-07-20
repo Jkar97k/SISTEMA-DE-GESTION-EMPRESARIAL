@@ -31,6 +31,7 @@ namespace IoC
             builder.Services.AddScoped<ITipoContratoRepository, TiposContratoRepository>();
             builder.Services.AddScoped<IFileRecordRepository, FileRecordRepository>();
             builder.Services.AddScoped<IBacklLogsRepository, BackLogsEventRepository>();
+
         }
         public static void ReglasNegocioService(WebApplicationBuilder builder)
         {
@@ -47,7 +48,7 @@ namespace IoC
 
         public static void ValidacionesService(WebApplicationBuilder builder)
         {
-
+            
         }
 
         public static void HttpClientService(WebApplicationBuilder builder)

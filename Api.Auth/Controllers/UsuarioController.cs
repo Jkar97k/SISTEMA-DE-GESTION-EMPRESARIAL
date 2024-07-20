@@ -28,6 +28,7 @@ namespace Api.Auth.Controllers
         [HttpPost("ActivarEmpleado")]
         public async Task<IActionResult> DarAltaUsuario(RequestActivarEmpleado dtos)
         {
+            Thread.Sleep(2000);
             try 
             {
                 await _usuarioService.DarAltaUsuario(dtos);
@@ -44,6 +45,7 @@ namespace Api.Auth.Controllers
         [HttpPut("DarBajaEmpleado")]
         public async Task<IActionResult> DarBajaEmpleado(RequestDesactivarEmpleado dtos)
         {
+            Thread.Sleep(2000);
             await _usuarioService.DarBajaEmpleado(dtos);
             return Ok();
         }

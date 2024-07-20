@@ -7,6 +7,9 @@ using Utilities;
 using Repository;
 using Auth.Interfaces;
 using Auth.Repository;
+using Hangfire;
+using Hangfire.MemoryStorage;
+using IoC.Api.Admin;
 
 
 namespace IoC
@@ -16,8 +19,10 @@ namespace IoC
         public  static void ConfigBuilderServices(WebApplicationBuilder builder) 
         {
             builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
-            //builder.Services.AddScoped<IRepository, Repository>();
 
+            builder.Services.AddHangfire(config => config.UseMemoryStorage());
+
+            builder.Services.AddHangfireServer();
 
             builder.Services.AddControllers(config =>
             {
@@ -41,6 +46,9 @@ namespace IoC
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseHangfireDashboard();
+
+           // Admin_HangFireConfig.ConfigureJobs(app.Services);
 
             app.UseHttpsRedirection();
 

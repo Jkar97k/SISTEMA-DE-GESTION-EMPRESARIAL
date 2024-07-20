@@ -1,5 +1,6 @@
 using Configurations.serilog;
 using IoC;
+using IoC.Api.Admin;
 using IoC.Global;
 
 
@@ -24,5 +25,7 @@ ConfigApi.ConfigBuilderServices(builder);
 var app = builder.Build();
 
 ConfigApi.ConfigureApi(app);
+
+Admin_HangFireConfig.ConfigureJobs(app.Services);
 // Configure the HTTP request pipeline.
 
