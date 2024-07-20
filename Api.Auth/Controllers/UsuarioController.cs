@@ -24,5 +24,28 @@ namespace Api.Auth.Controllers
             var date = await _usuarioService.GetAll();
             return Ok(date);
         }
+
+        [HttpPost("ActivarEmpleado")]
+        public async Task<IActionResult> DarAltaUsuario(RequestActivarEmpleado dtos)
+        {
+            try 
+            {
+                await _usuarioService.DarAltaUsuario(dtos);
+
+                return Ok();
+            } 
+            catch 
+            {
+                return StatusCode(400, "Falla critica");
+            }
+
+        }
+
+        [HttpPut("DarBajaEmpleado")]
+        public async Task<IActionResult> DarBajaEmpleado(RequestDesactivarEmpleado dtos)
+        {
+            await _usuarioService.DarBajaEmpleado(dtos);
+            return Ok();
+        }
     }
 }

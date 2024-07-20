@@ -5,7 +5,7 @@ namespace Admin.Interfaces.ServiceCall
 {
     public interface IAuthService
     {
-        Task<BaseResponse<HttpStatusCode>> ActivarEmpleado(RequestActivarEmpleado request);
-        Task<BaseResponse<HttpStatusCode>> DarBajaEmpleado(RequestDesactivarEmpleado request);
+        Task<BaseResponse<bool>> ActivarEmpleado(RequestActivarEmpleado request);
+        Task<BaseResponse<bool>> DarBajaEmpleado(RequestDesactivarEmpleado request);
     }
 }

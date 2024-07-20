@@ -14,6 +14,7 @@ namespace Auth.DTO
         int Role,
         string CodigoValidacion,
         DateTime ExpiracionCodigo,
-        DateTime? FechaDesactivacion
+        DateTime? FechaDesactivacion,
+        bool Status
     );
 }

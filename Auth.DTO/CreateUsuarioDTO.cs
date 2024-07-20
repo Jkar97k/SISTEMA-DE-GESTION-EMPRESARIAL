@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace Auth.DTO
 {
     public record CreateUsuarioDTO(
-        int Id,
         string NumeroDocumento,
         string Correo,
         string Contrasenna,
         int Role,
         string CodigoValidacion,
         DateTime ExpiracionCodigo,
-        DateTime? FechaDesactivacion
+        DateTime? FechaDesactivacion,
+       bool Status 
     );
 }

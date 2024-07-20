@@ -10,6 +10,7 @@ using Admin.Repositories;
 using Admin.Interfaces.ServiceCall;
 using Interfaces;
 using ServiceCall;
+using Admin.Interfaces.Repositories.Base;
 
 namespace IoC
 {
@@ -29,6 +30,7 @@ namespace IoC
             builder.Services.AddScoped<IServicioRepository, ServicioRepository>();
             builder.Services.AddScoped<ITipoContratoRepository, TiposContratoRepository>();
             builder.Services.AddScoped<IFileRecordRepository, FileRecordRepository>();
+            builder.Services.AddScoped<IBacklLogsRepository, BackLogsEventRepository>();
         }
         public static void ReglasNegocioService(WebApplicationBuilder builder)
         {

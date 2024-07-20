@@ -3,6 +3,9 @@ using Auth.DTO;
 using Auth.Entities.Models;
 using Auth.Interfaces;
 using AutoMapper;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using DTO;
+using Microsoft.AspNetCore.Http;
 
 namespace Auth.Service
 {
@@ -22,28 +25,44 @@ namespace Auth.Service
             var data = await _unitOfWork.UsuarioRepository.GetAllAsync();
             return _mapper.Map<List<UsuarioDTO>>(data);
         }
-        //public async Task Add(CreateUsuarioDTO dto)
-        //{
-        //    var data = await _unitOfWork.UsuarioRepository.GetOne(x => x.NumeroDocumento == dto.NumeroDocumento);
-        //    if (data != null)
-        //    {
-        //        return;
-        //    }
-        //    var entity = _mapper.Map<Usuario>(dto);
-        //    await _unitOfWork.UsuarioRepository.Add(entity);
-        //    await _unitOfWork.SaveChanges();
-        //}
-        //public async Task Update(UsuarioDTO dto)
-        //{
-        //    var data = await _unitOfWork.UsuarioRepository.GetOne(x => x.Id == dto.Id);
-        //    if (data == null)
-        //    {
-        //        return;
-        //    }
-        //    var entity = _mapper.Map(dto, data);
-        //    _unitOfWork.UsuarioRepository.UpdateAsync(entity);
-        //    await _unitOfWork.SaveChanges();
-        //}
+
+
+        public async Task DarAltaUsuario(RequestActivarEmpleado dtos)
+        {
+            var data = await _unitOfWork.UsuarioRepository.GetOne(x => x.NumeroDocumento == dtos.IdenficadorEmpleado);
+
+            if (data != null)
+            {
+                
+                return ;
+            }
+
+            var table = new CreateUsuarioDTO(
+                    dtos.IdenficadorEmpleado,
+                    dtos.Correo,
+                    dtos.IdenficadorEmpleado,
+                    dtos.Cargo,
+                    Guid.NewGuid().ToString(),
+                    DateTime.Now,
+                    null,
+                    true
+                );
+            var entity = _mapper.Map<Usuario>(table);
+            await _unitOfWork.UsuarioRepository.Add(entity);
+            await _unitOfWork.SaveChanges();
+        }
+        public async Task DarBajaEmpleado(RequestDesactivarEmpleado dtos)
+        {
+            var data = await _unitOfWork.UsuarioRepository.GetOne(x => x.NumeroDocumento == dtos.IdenficadorEmpleado);
+            if (data == null)
+            {
+                return;
+            }
+            data.FechaDesactivacion = dtos.FechaDesactivacion;
+            data.Status = false;
+            _unitOfWork.UsuarioRepository.UpdateAsync(data);
+            await _unitOfWork.SaveChanges();
+        }
         //public async Task Delete(int id)
         //{
         //    var data = await _unitOfWork.UsuarioRepository.GetOne(x => x.Id == id);

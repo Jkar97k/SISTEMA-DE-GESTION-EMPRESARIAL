@@ -14,7 +14,11 @@
     <None Remove="Archivos\**" />
     <None Remove="Order\**" />
   </ItemGroup>
-
+<ItemGroup>
+	<PackageReference Include="Abp.HangFire.AspNetCore" Version="9.2.2" />
+	<PackageReference Include="AutoMapper" Version="13.0.1" />
+	<PackageReference Include="Hangfire.Core" Version="1.8.14" />
+</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Admin.DTO\Admin.DTO.csproj" />
     <ProjectReference Include="..\Admin.Interfaces\Admin.Interfaces.csproj" />

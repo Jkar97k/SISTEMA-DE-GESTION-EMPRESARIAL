@@ -11,14 +11,14 @@ namespace ServiceCall
         public AuthService(HttpClient client) : base(client) { }
 
 
-        public async Task<BaseResponse<HttpStatusCode>> ActivarEmpleado(RequestActivarEmpleado request)
+        public async Task<BaseResponse<bool>> ActivarEmpleado(RequestActivarEmpleado request)
         {
-            return await Post<HttpStatusCode, RequestActivarEmpleado>("", request);
+            return await Post<bool, RequestActivarEmpleado>("Usuario/ActivarEmpleado", request);
         }
 
-        public async Task<BaseResponse<HttpStatusCode>> DarBajaEmpleado(RequestDesactivarEmpleado request)
+        public async Task<BaseResponse<bool>> DarBajaEmpleado(RequestDesactivarEmpleado request)
         {
-            return await Post<HttpStatusCode, RequestDesactivarEmpleado>("", request);
+            return await Put<bool, RequestDesactivarEmpleado>("Usuario/DarBajaEmpleado", request);
         }
     }
 }

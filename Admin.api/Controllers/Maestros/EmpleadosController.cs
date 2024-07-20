@@ -34,7 +34,7 @@ namespace Admin.api.Controllers.Maestros
             return Ok();
         }
 
-        [HttpPost("Update")]
+        [HttpPut("Update")]
         public async Task<IActionResult> Update(RequestEmpleado dtos)
         {
             await _empleadosService.UpdateEmpleado(dtos);

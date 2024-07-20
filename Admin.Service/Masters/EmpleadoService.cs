@@ -1,9 +1,13 @@
 ﻿using Admin.DTO;
+using Admin.DTO.BacklogsEvent;
 using Admin.Entities.Models;
 using Admin.Interfaces;
 using Admin.Interfaces.ServiceCall;
 using AutoMapper;
 using DTO;
+using DTO.BacklogsEvent;
+using System.Diagnostics.Contracts;
+using System.Text.Json;
 
 namespace Admin.Services
 {
@@ -96,7 +100,7 @@ namespace Admin.Services
                 try
                 {
                     var data = await _unitOfWork.EmpleadosRepository.GetOne(x => x.NumeroDocumento == request.EmpleadoDT.NumeroDocumento);
-                    if (data != null)
+                    if (data == null)
                     {
                         return;
                     }
@@ -107,12 +111,14 @@ namespace Admin.Services
                     await _unitOfWork.SaveChanges();
 
                     var dataC = await _unitOfWork.ContratosLaboraleRepository.GetOne(x => x.EmpleadoId == request.EmpleadoDT.Id);
-                    if (dataC != null)
+                    if (dataC == null)
                     {
                         return;
                     }
+                    
                     var contrato = _mapper.Map(request.ContratosLaborales, dataC);
                     contrato.EmpleadoId = empleadoDT.Id;
+                    //contrato.Id = dataC.Id;
                     _unitOfWork.ContratosLaboraleRepository.UpdateAsync(contrato);
                     await _unitOfWork.SaveChanges();
 
@@ -138,7 +144,15 @@ namespace Admin.Services
 
         public async Task ActivarEmpleado(RequestActivarEmpleado request) 
         {
-            await _authService.ActivarEmpleado(request);
+            var backlog = new BacklogsEventDTO()
+            {
+                CreatedAt = DateTime.Now,
+                EventType = (int)EventsEnum.DarAltaEmpleado,
+                Json = JsonSerializer.Serialize(request)
+            };
+            var back = _mapper.Map<BacklogsEvent>(backlog);
+            await _unitOfWork.BacklLogsRepository.Add(back);
+            await _unitOfWork.SaveChanges();
         }
         public async Task DarBajaEmpleado(RequestDesactivarEmpleado request) 
         {

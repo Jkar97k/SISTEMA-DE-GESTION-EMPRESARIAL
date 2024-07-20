@@ -1,5 +1,6 @@
 ﻿
 using Admin.DTO;
+using Admin.DTO.BacklogsEvent;
 using Admin.Entities.Models;
 using AutoMapper;
 using System;
@@ -35,6 +36,7 @@ namespace Configurations.AutoMapper
             CreateMap<TiposContrato,CreateGenericDTO>().ReverseMap();
             CreateMap<FileRecord,FileRecordDTO>().ReverseMap();
             CreateMap<FileRecord,CreateFileRecordDTO>().ReverseMap();
+            CreateMap<BacklogsEvent,BacklogsEventDTO>().ReverseMap();
         }
     }
 }

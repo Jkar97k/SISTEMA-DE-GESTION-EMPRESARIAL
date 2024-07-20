@@ -1,14 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace Admin.Entities.Models;
 
-public partial class SgeAdminContext : DbContext 
+public partial class SgeAdminContext : DbContext
 {
     public SgeAdminContext(DbContextOptions<SgeAdminContext> options)
         : base(options)
     {
     }
-    public virtual DbSet<Arl> Arls { get; set; }
+
+    public virtual DbSet<BacklogsEvent> Arls { get; set; }
+
+    public virtual DbSet<BacklogsEvent> BacklogsEvents { get; set; }
 
     public virtual DbSet<Cargo> Cargos { get; set; }
 
@@ -30,7 +35,7 @@ public partial class SgeAdminContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Arl>(entity =>
+        modelBuilder.Entity<BacklogsEvent>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
@@ -40,6 +45,19 @@ public partial class SgeAdminContext : DbContext
             entity.Property(e => e.Nombre)
                 .IsRequired()
                 .HasMaxLength(255);
+        });
+
+        modelBuilder.Entity<BacklogsEvent>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("BacklogsEvent");
+
+            entity.Property(e => e.Id).HasColumnType("int(11)");
+            entity.Property(e => e.CompletedAt).HasColumnType("datetime");
+            entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+            entity.Property(e => e.EventType).HasColumnType("int(11)");
+            entity.Property(e => e.Json).IsRequired();
         });
 
         modelBuilder.Entity<Cargo>(entity =>

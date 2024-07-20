@@ -9,6 +9,7 @@ namespace Interfaces
         Task Add(T entity);
         void DeleteAsync(T entity);
         Task<List<T>> GetAllAsync();
+        Task<List<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeString = null, bool disableTracking = true);
         Task<T?> GetOne(Expression<Func<T, bool>> funcion);
         Task<int> SaveChanges();
         void UpdateAsync(T entity);

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Admin.Entities.Models;
+using Admin.Interfaces.Repositories.Base;
 
 namespace Admin.Repositories.Base
 {
@@ -26,6 +27,7 @@ namespace Admin.Repositories.Base
         private IFondosPensionRepository _fondosPensionRepository;
         private IServicioRepository _servicioRepository;
         private ITipoContratoRepository _tipoContratoRepository;
+        private IBacklLogsRepository _backlLogsRepository;
 
         public UnitofWork(SgeAdminContext context, IMapper mapper)
         {
@@ -43,6 +45,7 @@ namespace Admin.Repositories.Base
         public IFondosPensionRepository FondosPensionRepository => _fondosPensionRepository ??= new FondosPensionRepository(_context, _mapper);
         public IServicioRepository ServicioRepository => _servicioRepository ??= new ServicioRepository(_context, _mapper);
         public ITipoContratoRepository TipoContratoRepository => _tipoContratoRepository ??= new TiposContratoRepository(_context, _mapper);
+        public IBacklLogsRepository BacklLogsRepository => _backlLogsRepository ??= new BackLogsEventRepository(_context, _mapper);
 
         public async Task SaveChanges()
         {

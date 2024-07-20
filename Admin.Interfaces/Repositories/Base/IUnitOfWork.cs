@@ -1,5 +1,6 @@
 ﻿
 using Admin.Interfaces;
+using Admin.Interfaces.Repositories.Base;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Admin.Interfaces
@@ -16,6 +17,7 @@ namespace Admin.Interfaces
         IFondosPensionRepository FondosPensionRepository { get; }
         IServicioRepository ServicioRepository { get; }
         ITipoContratoRepository TipoContratoRepository { get; }
+        IBacklLogsRepository BacklLogsRepository { get; }
 
         IDbContextTransaction BeginTransaction();
         void Dispose();

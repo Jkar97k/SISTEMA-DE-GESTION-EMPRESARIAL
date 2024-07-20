@@ -31,7 +31,7 @@ public partial class ContratosLaborale
 
     public string SoportesRef { get; set; }
 
-    public virtual Arl Arl { get; set; }
+    public virtual BacklogsEvent Arl { get; set; }
 
     public virtual Cargo Cargo { get; set; }
 
