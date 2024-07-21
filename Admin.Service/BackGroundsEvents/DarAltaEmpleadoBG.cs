@@ -18,9 +18,15 @@ namespace Admin.Services.BackGroundsEvents
         {
             _logger.LogInformation("Tarea dar de Alta ejecutada");
 
+           
             var data = await _unitOfWork.BacklLogsRepository.GetAllAsync(x => x.CompletedAt == null && 
             x.EventType == (int)EventsEnum.DarAltaEmpleado);
-            foreach (var item in data) 
+            if (data.Count == 0) 
+            {
+                _logger.LogInformation("No hay datos para Ejecutar la tarea");
+                return; 
+            }
+            foreach (var item in data)
             {
                 var json = JsonSerializer.Deserialize<RequestActivarEmpleado>(item.Json);
                 try
@@ -28,7 +34,7 @@ namespace Admin.Services.BackGroundsEvents
                     var task = _apiAuthService.ActivarEmpleado(json);
                     task.Wait(5000);
 
-                    if (!task.IsCompleted || !task.IsCompletedSuccessfully) 
+                    if (!task.IsCompleted || !task.IsCompletedSuccessfully)
                     {
                         throw new Exception("Error Al dar De alta");
                         continue;

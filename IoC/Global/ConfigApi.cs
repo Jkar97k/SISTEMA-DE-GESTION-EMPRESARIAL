@@ -48,7 +48,7 @@ namespace IoC
             }
             app.UseHangfireDashboard();
 
-           // Admin_HangFireConfig.ConfigureJobs(app.Services);
+
 
             app.UseHttpsRedirection();
 

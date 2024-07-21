@@ -6,6 +6,7 @@ using AutoMapper;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using DTO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace Auth.Service
 {
@@ -13,7 +14,7 @@ namespace Auth.Service
     {
         private readonly IMapper _mapper;
         private readonly IUnitofWork _unitOfWork;
-
+        private readonly ILogger< RequestDesactivarEmpleado> _logger;
         public UsuarioService(IMapper mapper, IUnitofWork unitofWork)
         {
             _mapper = mapper;

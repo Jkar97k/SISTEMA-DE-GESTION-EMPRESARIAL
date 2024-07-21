@@ -15,6 +15,7 @@ Admin_BusinessLogicIoC.CargaBuilder(builder);
 
 var app = builder.Build();
 
+Admin_HangFireConfig.ConfigureJobs(app.Services);
+
 ConfigApi.ConfigureApi(app);
 
-Admin_HangFireConfig.ConfigureJobs(app.Services);
