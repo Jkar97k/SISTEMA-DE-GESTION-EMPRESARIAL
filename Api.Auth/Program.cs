@@ -26,6 +26,5 @@ var app = builder.Build();
 
 ConfigApi.ConfigureApi(app);
 
-Admin_HangFireConfig.ConfigureJobs(app.Services);
 // Configure the HTTP request pipeline.
 

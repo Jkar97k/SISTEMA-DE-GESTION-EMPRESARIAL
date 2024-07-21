@@ -1,5 +1,6 @@
 using Configurations.serilog;
 using IoC;
+using IoC.Api.Admin;
 using IoC.Global;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,3 +16,5 @@ Admin_BusinessLogicIoC.CargaBuilder(builder);
 var app = builder.Build();
 
 ConfigApi.ConfigureApi(app);
+
+Admin_HangFireConfig.ConfigureJobs(app.Services);

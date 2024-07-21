@@ -50,6 +50,7 @@ namespace Auth.Service
             var entity = _mapper.Map<Usuario>(table);
             await _unitOfWork.UsuarioRepository.Add(entity);
             await _unitOfWork.SaveChanges();
+
         }
         public async Task DarBajaEmpleado(RequestDesactivarEmpleado dtos)
         {

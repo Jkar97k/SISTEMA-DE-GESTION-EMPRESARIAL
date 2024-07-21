@@ -11,7 +11,7 @@ public partial class SgeAdminContext : DbContext
     {
     }
 
-    public virtual DbSet<BacklogsEvent> Arls { get; set; }
+    public virtual DbSet<Arl> Arls { get; set; }
 
     public virtual DbSet<BacklogsEvent> BacklogsEvents { get; set; }
 
@@ -35,7 +35,7 @@ public partial class SgeAdminContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<BacklogsEvent>(entity =>
+        modelBuilder.Entity<Arl>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 

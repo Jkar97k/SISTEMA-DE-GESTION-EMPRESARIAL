@@ -1,11 +1,6 @@
 ﻿using Admin.Services.BackGroundsEvents;
 using Hangfire;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IoC.Api.Admin
 {
@@ -17,8 +12,8 @@ namespace IoC.Api.Admin
             {
                 var recurringJobManager = scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
 
-                recurringJobManager.AddOrUpdate<DarAltaEmpleadoBG>("DarAltaEmpleadoBG", x => x.BGExecute(), Cron.Minutely);
-                //recurringJobManager.AddOrUpdate<DarBajaEmpleadoBG>("DarBajaEmpleadoJob", x => x.BGExecute(), Cron.Minutely);
+               // recurringJobManager.AddOrUpdate<DarAltaEmpleadoBG>("DarAltaEmpleadoBG", x => x.BGExecute(), "*/50 * * * * *");
+                recurringJobManager.AddOrUpdate<DarBajaEmpleadoBG>("DarBajaEmpleadoJob", x => x.BGExecute(), "*/20 * * * * *");
             }
         }
      

@@ -156,7 +156,17 @@ namespace Admin.Services
         }
         public async Task DarBajaEmpleado(RequestDesactivarEmpleado request) 
         {
-            await _authService.DarBajaEmpleado(request);
+            var backlog = new BacklogsEventDTO()
+            {
+                CreatedAt = DateTime.Now,
+                EventType = (int)EventsEnum.DarBajaEmpleado,
+                Json = JsonSerializer.Serialize(request)
+            };
+            var back = _mapper.Map<BacklogsEvent>(backlog);
+            await _unitOfWork.BacklLogsRepository.Add(back);
+            await _unitOfWork.SaveChanges();
+
+            //await _authService.DarBajaEmpleado(request);
         }
     }
 }
