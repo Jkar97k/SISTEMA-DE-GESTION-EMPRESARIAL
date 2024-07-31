@@ -1,5 +1,6 @@
 ﻿using Admin.DTO;
 using DTO;
+using Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Utilities
 {
-    public class HttpBase
+    public class HttpBase : IHttpBase
     {
         private readonly HttpClient _httpClient;
 

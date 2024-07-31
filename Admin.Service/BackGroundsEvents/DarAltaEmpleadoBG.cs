@@ -3,6 +3,7 @@ using Admin.Interfaces.ServiceCall;
 using AutoMapper;
 using DTO;
 using DTO.BacklogsEvent;
+using Exceptions;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
@@ -11,7 +12,6 @@ namespace Admin.Services.BackGroundsEvents
     public class DarAltaEmpleadoBG(
         IUnitofWork _unitOfWork, 
         IAuthService _apiAuthService, 
-        IMapper _mapper,
         ILogger<DarAltaEmpleadoBG> _logger)
     {
         public async Task BGExecute() 
@@ -21,6 +21,7 @@ namespace Admin.Services.BackGroundsEvents
            
             var data = await _unitOfWork.BacklLogsRepository.GetAllAsync(x => x.CompletedAt == null && 
             x.EventType == (int)EventsEnum.DarAltaEmpleado);
+
             if (data.Count == 0) 
             {
                 _logger.LogInformation("No hay datos para Ejecutar la tarea");
@@ -36,8 +37,8 @@ namespace Admin.Services.BackGroundsEvents
 
                     if (!task.IsCompleted || !task.IsCompletedSuccessfully)
                     {
-                        throw new Exception("Error Al dar De alta");
-                        continue;
+                        throw new ClientErrorException("Error Al dar De alta");
+                        
                     }
                     item.CompletedAt = DateTime.Now;
                     _unitOfWork.BacklLogsRepository.UpdateAsync(item);
@@ -45,7 +46,7 @@ namespace Admin.Services.BackGroundsEvents
                 }
                 catch (Exception e)
                 {
-                    throw new Exception($"error en {e}");
+                    throw new ClientErrorException($"error en {e}");
                 }
             }
         }

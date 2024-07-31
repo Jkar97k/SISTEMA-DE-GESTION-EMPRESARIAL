@@ -1,3 +1,4 @@
+using Admin.api.Middleware;
 using Configurations.serilog;
 using IoC;
 using IoC.Api.Admin;
@@ -14,6 +15,8 @@ Admin_AutoMapperIoC.ConfigureService(builder);
 Admin_BusinessLogicIoC.CargaBuilder(builder);
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 Admin_HangFireConfig.ConfigureJobs(app.Services);
 

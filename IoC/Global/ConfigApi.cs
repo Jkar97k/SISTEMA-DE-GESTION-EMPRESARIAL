@@ -41,13 +41,13 @@ namespace IoC
 
         public static void ConfigureApi(WebApplication app)
         {
+            
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
             app.UseHangfireDashboard();
-
 
 
             app.UseHttpsRedirection();

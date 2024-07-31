@@ -41,7 +41,7 @@ namespace Admin.Services
                 await _unitOfWork.SaveChanges();
                 _logger.LogInformation("Se a Creado con Exito El Cargo");
             } 
-            catch (Exception ex) 
+            catch 
             {
                 _logger.LogError("Error al ejecutar ");
             }

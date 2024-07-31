@@ -11,7 +11,7 @@ namespace Admin.Services.BackGroundsEvents
     public class DarBajaEmpleadoBG(
         IUnitofWork _unitOfWork,
         IAuthService _apiAuthService, 
-        IMapper _mapper,
+       // IMapper _mapper,
         ILogger<DarBajaEmpleadoBG> _logger)
     {
         public async Task BGExecute()

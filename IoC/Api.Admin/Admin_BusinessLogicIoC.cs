@@ -11,6 +11,11 @@ using Admin.Interfaces.ServiceCall;
 using Interfaces;
 using ServiceCall;
 using Admin.Interfaces.Repositories.Base;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using DTO;
+using Admin.DTO;
+using Admin.Interfaces.Utilidades;
 
 namespace IoC
 {
@@ -48,7 +53,19 @@ namespace IoC
 
         public static void ValidacionesService(WebApplicationBuilder builder)
         {
-            
+            builder.Services.AddValidatorsFromAssemblyContaining<RequestCreateEmpleado>();
+            builder.Services.AddValidatorsFromAssemblyContaining<CreateEmpleadoDTO>();
+            builder.Services.AddValidatorsFromAssemblyContaining<CreateContratosLaboralesDTO>();
+            //builder.Services.AddValidatorsFromAssemblyContaining<>();
+            //builder.Services.AddValidatorsFromAssemblyContaining<>();
+            //builder.Services.AddValidatorsFromAssemblyContaining<>();
+            //builder.Services.AddValidatorsFromAssemblyContaining<>();
+            builder.Services.AddFluentValidationAutoValidation();
+        }
+
+        public static void ManejoCorreos(WebApplicationBuilder builder)
+        {
+            builder.Services.AddScoped<IManejadorCorreosMailKit, ManejadorCorreosMailKit>();
         }
 
         public static void HttpClientService(WebApplicationBuilder builder)
@@ -64,12 +81,15 @@ namespace IoC
             RepositoryService(builder);
             UtilidadesServices(builder);
             ReglasNegocioService(builder);
+            ValidacionesService(builder);
             HttpClientService(builder);
+            ManejoCorreos(builder);
             ConfigBuilderServices(builder);
         }
 
         public static void CargaApp(WebApplication app) 
         {
+           
             ConfigureApi(app);
         }
 

@@ -30,7 +30,7 @@ namespace Admin.Services
                 return;
             }
             var entity = _mapper.Map<Arl>(dto);
-            _unitOfWork.ArlRepository.Add(entity);
+           await  _unitOfWork.ArlRepository.Add(entity);
             await _unitOfWork.SaveChanges();
         }
         public async Task Update(GenericDTO dto)

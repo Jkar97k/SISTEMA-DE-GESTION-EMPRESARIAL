@@ -6,6 +6,8 @@ using Admin.Interfaces.ServiceCall;
 using AutoMapper;
 using DTO;
 using DTO.BacklogsEvent;
+using Exceptions;
+using Serilog.Core;
 using System.Diagnostics.Contracts;
 using System.Text.Json;
 
@@ -62,6 +64,7 @@ namespace Admin.Services
                 catch (Exception)
                 {
                     transaction.Rollback();
+                    throw new ClientErrorException("Error en el proceso , los cambios no se ejecutaron");
                 }
             }
         }
@@ -138,6 +141,7 @@ namespace Admin.Services
                 catch (Exception)
                 {
                     transaction.Rollback();
+                    throw new ClientErrorException("Error en el proceso , los cambios no se ejecutaron");
                 }
             }
         }
@@ -154,6 +158,7 @@ namespace Admin.Services
             await _unitOfWork.BacklLogsRepository.Add(back);
             await _unitOfWork.SaveChanges();
         }
+
         public async Task DarBajaEmpleado(RequestDesactivarEmpleado request) 
         {
             var backlog = new BacklogsEventDTO()
