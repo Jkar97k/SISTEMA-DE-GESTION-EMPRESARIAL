@@ -1,7 +1,9 @@
-﻿using Auth.Service;
+﻿using Admin.Interfaces.Utilidades;
+using Auth.Service;
 using DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MySqlX.XDevAPI.Common;
 
 namespace Api.Auth.Controllers
 {
@@ -11,11 +13,14 @@ namespace Api.Auth.Controllers
     {
         private readonly IUsuarioService _usuarioService;
         private readonly ILogger<RequestActivarEmpleado> _logger;
+        //private readonly IManejadorCorreosMailKit _manejadorCorreos;
+
 
         public UsuarioController(IUsuarioService usuarioService, ILogger<RequestActivarEmpleado> logger)
         {
             _usuarioService = usuarioService;
             _logger = logger;
+            //_manejadorCorreos = manejadorCorreos;
         }
 
         [HttpGet("GetToAll")]
@@ -47,7 +52,28 @@ namespace Api.Auth.Controllers
         {
             Thread.Sleep(2000);
             await _usuarioService.DarBajaEmpleado(dtos);
-            return Ok();
+
+            var result = new BaseResponse<bool>
+            {
+                Message = "Operación exitosa",
+                Result = true,
+                StatusCode = System.Net.HttpStatusCode.OK
+            };
+            return Ok(result);
         }
+
+        //[HttpPost("PruebaDeEnvio")]
+        //public async Task<IActionResult> SendEmail([FromBody] DatosEnvioCorreoDTO request)
+        //{
+        //    try
+        //    {
+        //        await _manejadorCorreos.Enviar(request);
+        //        return Ok("Email sent successfully.");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"Internal server error: {ex.Message}");
+        //    }
+        //}
     }
 }

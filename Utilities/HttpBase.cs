@@ -66,8 +66,10 @@ namespace Utilities
             var response = await _httpClient.PutAsync(uri, content);
 
             response.EnsureSuccessStatusCode();
+
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
+
                 var responseStream = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject
                     <BaseResponse<R>>(responseStream);

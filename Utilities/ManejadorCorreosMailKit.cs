@@ -24,6 +24,7 @@ public class ManejadorCorreosMailKit : IManejadorCorreosMailKit
         var bodyBuilder = new BodyBuilder
         {
             HtmlBody = dto.ContenidoHTML
+
         };
         message.Body = bodyBuilder.ToMessageBody();
 

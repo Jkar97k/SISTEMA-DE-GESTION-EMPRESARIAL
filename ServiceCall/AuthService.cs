@@ -18,7 +18,9 @@ namespace ServiceCall
 
         public async Task<BaseResponse<bool>> DarBajaEmpleado(RequestDesactivarEmpleado request)
         {
-            return await Put<bool, RequestDesactivarEmpleado>("Usuario/DarBajaEmpleado", request);
+            var result = await Put<bool, RequestDesactivarEmpleado>("Usuario/DarBajaEmpleado", request);
+
+            return result;
         }
     }
 }

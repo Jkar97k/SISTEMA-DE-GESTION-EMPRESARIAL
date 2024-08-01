@@ -16,6 +16,10 @@ Auth_BusinessLogicIoC.RepositoryService(builder);
 
 Auth_BusinessLogicIoC.ReglasNegocioService(builder);
 
+Auth_BusinessLogicIoC.ManejoCorreos(builder);
+
+Auth_BusinessLogicIoC.ConfigurationAppSetting(builder);
+
 Auth_BusinessLogicIoC.ValidacionesService(builder);
 
 Auth_BusinessLogicIoC.UtilidadesService(builder);

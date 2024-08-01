@@ -49,6 +49,7 @@ namespace IoC
             builder.Services.AddScoped<IServicioService, ServicioService>();
             builder.Services.AddScoped<ITipoContratoRepository, TiposContratoRepository>();
             builder.Services.AddScoped<IFileRecordService, FileRecordService>();
+           // builder.Services.AddScoped<IHttpBase, HttpBase>();
         }
 
         public static void ValidacionesService(WebApplicationBuilder builder)
@@ -56,16 +57,16 @@ namespace IoC
             builder.Services.AddValidatorsFromAssemblyContaining<RequestCreateEmpleado>();
             builder.Services.AddValidatorsFromAssemblyContaining<CreateEmpleadoDTO>();
             builder.Services.AddValidatorsFromAssemblyContaining<CreateContratosLaboralesDTO>();
-            //builder.Services.AddValidatorsFromAssemblyContaining<>();
-            //builder.Services.AddValidatorsFromAssemblyContaining<>();
-            //builder.Services.AddValidatorsFromAssemblyContaining<>();
-            //builder.Services.AddValidatorsFromAssemblyContaining<>();
             builder.Services.AddFluentValidationAutoValidation();
         }
 
         public static void ManejoCorreos(WebApplicationBuilder builder)
         {
             builder.Services.AddScoped<IManejadorCorreosMailKit, ManejadorCorreosMailKit>();
+        }
+        public static void ConfigurationAppSetting(WebApplicationBuilder builder)
+        {
+            builder.Services.Configure<EmailSettingsDTO>(builder.Configuration.GetSection("EmailSettings"));
         }
 
         public static void HttpClientService(WebApplicationBuilder builder)
@@ -79,11 +80,13 @@ namespace IoC
         public static void CargaBuilder(WebApplicationBuilder builder) 
         {
             RepositoryService(builder);
+            HttpClientService(builder);
             UtilidadesServices(builder);
+            
             ReglasNegocioService(builder);
             ValidacionesService(builder);
-            HttpClientService(builder);
             ManejoCorreos(builder);
+            ConfigurationAppSetting(builder);
             ConfigBuilderServices(builder);
         }
 

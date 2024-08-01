@@ -6,6 +6,7 @@ using AutoMapper;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using DTO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Logging;
 
 namespace Auth.Service
@@ -64,6 +65,8 @@ namespace Auth.Service
             data.Status = false;
             _unitOfWork.UsuarioRepository.UpdateAsync(data);
             await _unitOfWork.SaveChanges();
+
+            
         }
         //public async Task Delete(int id)
         //{

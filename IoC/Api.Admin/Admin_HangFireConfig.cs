@@ -12,8 +12,9 @@ namespace IoC.Api.Admin
             {
                 var recurringJobManager = scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
 
-                recurringJobManager.AddOrUpdate<DarAltaEmpleadoBG>("DarAltaEmpleadoBG", x => x.BGExecute(), Cron.Minutely);
-                recurringJobManager.AddOrUpdate<DarBajaEmpleadoBG>("DarBajaEmpleadoJob", x => x.BGExecute(), "*/20 * * * * *");
+               // recurringJobManager.AddOrUpdate<DarAltaEmpleadoBG>("DarAltaEmpleadoBG", x => x.BGExecute(), Cron.Minutely);
+                //recurringJobManager.AddOrUpdate<DarBajaEmpleadoBG>("DarBajaEmpleadoJob", x => x.BGExecute(), "*/20 * * * * *");
+                recurringJobManager.AddOrUpdate<DarBajaEmpleadoBG>("DarBajaEmpleadoJob", x => x.BGExecute(), Cron.Minutely);
             }
         }
      

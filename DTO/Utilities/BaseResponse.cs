@@ -10,6 +10,6 @@ namespace DTO
     {
         public string Message { get; set; }
         public T Result { get; set; }
-        public System.Net.HttpStatusCode? StatusCode { get; set; }
+         public System.Net.HttpStatusCode? StatusCode { get; set; }
     }
 }
