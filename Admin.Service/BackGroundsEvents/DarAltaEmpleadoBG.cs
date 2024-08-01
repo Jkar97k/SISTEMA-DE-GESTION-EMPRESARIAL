@@ -18,7 +18,6 @@ namespace Admin.Services.BackGroundsEvents
         {
             _logger.LogInformation("Tarea dar de Alta ejecutada");
 
-           
             var data = await _unitOfWork.BacklLogsRepository.GetAllAsync(x => x.CompletedAt == null && 
             x.EventType == (int)EventsEnum.DarAltaEmpleado);
 
