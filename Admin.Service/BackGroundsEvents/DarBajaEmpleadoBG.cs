@@ -45,7 +45,8 @@ namespace Admin.Services.BackGroundsEvents
             {
                 _logger.LogInformation("No hay datos para Ejecutar la tarea");
                 return;
-            }
+            } 
+
 
             foreach (var item in data)
             {
