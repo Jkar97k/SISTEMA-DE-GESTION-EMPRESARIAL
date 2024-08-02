@@ -33,12 +33,18 @@ namespace Api.Auth.Controllers
         [HttpPost("ActivarEmpleado")]
         public async Task<IActionResult> DarAltaUsuario(RequestActivarEmpleado dtos)
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(500);
             try 
             {
                 await _usuarioService.DarAltaUsuario(dtos);
 
-                return Ok();
+                var result = new BaseResponse<bool>
+                {
+                    Message = "Operación exitosa",
+                    Result = true,
+                    StatusCode = System.Net.HttpStatusCode.OK
+                };
+                return Ok(result);
             } 
             catch 
             {
@@ -50,16 +56,24 @@ namespace Api.Auth.Controllers
         [HttpPut("DarBajaEmpleado")]
         public async Task<IActionResult> DarBajaEmpleado(RequestDesactivarEmpleado dtos)
         {
-            Thread.Sleep(2000);
-            await _usuarioService.DarBajaEmpleado(dtos);
-
-            var result = new BaseResponse<bool>
+            
+            try
             {
-                Message = "Operación exitosa",
-                Result = true,
-                StatusCode = System.Net.HttpStatusCode.OK
-            };
-            return Ok(result);
+                Thread.Sleep(500);
+                await _usuarioService.DarBajaEmpleado(dtos);
+
+                var result = new BaseResponse<bool>
+                {
+                    Message = "Operación exitosa",
+                    Result = true,
+                    StatusCode = System.Net.HttpStatusCode.OK
+                };
+                return Ok(result);
+            }
+            catch
+            {
+                return StatusCode(400, "Falla critica");
+            }
         }
 
         //[HttpPost("PruebaDeEnvio")]

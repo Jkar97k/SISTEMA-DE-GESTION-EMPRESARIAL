@@ -55,7 +55,7 @@ namespace Admin.Services.BackGroundsEvents
                 {
                    // await Mensaje(json);
                     var task = _apiAuthService.DarBajaEmpleado(json);
-                    task.Wait(5000);
+                    task.Wait(6000);
 
                     if (!task.IsCompleted || !task.IsCompletedSuccessfully)
                     {
@@ -99,8 +99,8 @@ namespace Admin.Services.BackGroundsEvents
                 var mensajePreparado = new DatosEnvioCorreoDTO() 
                 {
                     Asunto = $"Se te dado se baja {info.Nombres}",
-                    ContenidoHTML =" Se Informa por este medio que actualmente ya no se encuentra vigente dentro de la organizacion" +
-                    "agradecemos su comprension y que tenga un buen dia.",
+                    ContenidoHTML =" Se Informa por este medio que actualmente ya no se encuentra vigente dentro de la organizacion." +
+                    " Agradecemos su comprension y que tenga un buen dia.",
                     CorreoRemitente = _emailconfig.FromAddress,
                     NombreRemitente = _emailconfig.FromName,
                     CorreoDestinatario = info.CorreoPersonal,
@@ -109,16 +109,13 @@ namespace Admin.Services.BackGroundsEvents
 
                 await _manejadorCorreos.Enviar(mensajePreparado);
 
-                _logger.LogInformation("Correo Eviado");
+                _logger.LogInformation("Correo Enviado");
 
             }
             catch
             {
                 throw new ClientErrorException("Error en el proceso , Falla en el envio");
             }
-
-
-
         }
     }
 }

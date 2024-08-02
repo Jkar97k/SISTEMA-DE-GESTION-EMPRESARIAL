@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Auth.DTO\Auth.DTO.csproj" />
     <ProjectReference Include="..\Auth.Interfaces\Auth.Interfaces.csproj" />
+    <ProjectReference Include="..\Exceptions\Exceptions.csproj" />
     <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>
 

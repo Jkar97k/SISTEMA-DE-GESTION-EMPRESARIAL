@@ -13,7 +13,8 @@ namespace ServiceCall
 
         public async Task<BaseResponse<bool>> ActivarEmpleado(RequestActivarEmpleado request)
         {
-            return await Post<bool, RequestActivarEmpleado>("Usuario/ActivarEmpleado", request);
+            var result = await Post<bool, RequestActivarEmpleado>("Usuario/ActivarEmpleado", request);
+            return result;
         }
 
         public async Task<BaseResponse<bool>> DarBajaEmpleado(RequestDesactivarEmpleado request)

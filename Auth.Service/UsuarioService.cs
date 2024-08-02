@@ -5,6 +5,7 @@ using Auth.Interfaces;
 using AutoMapper;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using DTO;
+using Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Logging;
@@ -31,28 +32,40 @@ namespace Auth.Service
 
         public async Task DarAltaUsuario(RequestActivarEmpleado dtos)
         {
-            var data = await _unitOfWork.UsuarioRepository.GetOne(x => x.NumeroDocumento == dtos.IdenficadorEmpleado);
-
-            if (data != null)
+            using (var transaction = _unitOfWork.BeginTransaction())
             {
-                
-                return ;
+                try 
+                {
+                    var data = await _unitOfWork.UsuarioRepository.GetOne(x => x.NumeroDocumento == dtos.IdenficadorEmpleado);
+
+                    if (data != null)
+                    {
+                        throw new ClientErrorException("Error en el proceso , ya existe el usuario creado");
+
+                    }
+
+                    var table = new CreateUsuarioDTO(
+                            dtos.IdenficadorEmpleado,
+                            dtos.Correo,
+                            dtos.IdenficadorEmpleado,
+                            dtos.Cargo,
+                            Guid.NewGuid().ToString(),
+                            DateTime.Now,
+                            null,
+                            true
+                        );
+                    var entity = _mapper.Map<Usuario>(table);
+                    await _unitOfWork.UsuarioRepository.Add(entity);
+                    await _unitOfWork.SaveChanges();
+                    transaction.Commit();
+                } 
+                catch 
+                {
+                    transaction.Rollback();
+                    throw new ClientErrorException("Error en el proceso , los cambios no se ejecutaron");
+                }
             }
-
-            var table = new CreateUsuarioDTO(
-                    dtos.IdenficadorEmpleado,
-                    dtos.Correo,
-                    dtos.IdenficadorEmpleado,
-                    dtos.Cargo,
-                    Guid.NewGuid().ToString(),
-                    DateTime.Now,
-                    null,
-                    true
-                );
-            var entity = _mapper.Map<Usuario>(table);
-            await _unitOfWork.UsuarioRepository.Add(entity);
-            await _unitOfWork.SaveChanges();
-
+            
         }
         public async Task DarBajaEmpleado(RequestDesactivarEmpleado dtos)
         {
